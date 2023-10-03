@@ -1,0 +1,24 @@
+<div id="container_p">
+   <div class="notice">
+      <% if flash[:notice] %>
+         <div class="alert alert-success alert-dismissible show fade">
+            <%= flash[:notice] %>
+            <button type="button" class="close" data-dismiss="alert">
+               <span>&times;</span>
+            </button>
+         </div>
+      <% end %>
+   </div>  
+   <div class="d-flex justify-content-around row">
+      <div class="col-11 col-sm-8 col-md-6">
+         <h2 style="text-align: center; padding-top: 40px">Details Chauffeur</h2>
+         <div class="border border-dark rounded bg-light">
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Nom:</strong> <%= @chauffeur.name %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Parking:</strong> <%= @chauffeur.parking.name %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Quartier:</strong> <%= @chauffeur.quartier %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Telephone:</strong> <%= @chauffeur.telephone %></p>
+            <div class="d-flex justify-content-center pb-3"><%= link_to 'Modifier', edit_chauffeur_path, class:"btn btn-outline-dark" %></div>
+         </div>
+      </div>
+   </div>
+</div>

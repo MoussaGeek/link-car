@@ -1,0 +1,36 @@
+<div id="container_p">
+    <div class="d-flex justify-content-around row">
+        <div class="col-11 col-sm-8 col-md-6">
+            <h2 style="text-align: center; padding: 20px">Création de chauffeur</h2>
+            <%= form_for(@chauffeur) do |f| %>
+                <% if @chauffeur.errors.any? %>
+                <div id="error_explanation">
+                    <div class="alert alert-danger">
+                    The form contains <%= pluralize(@chauffeur.errors.count, "error") %>.
+                    </div>
+                    <ul>
+                    <% @chauffeur.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                </div>
+                <% end %>
+            
+                <%= f.label :Name %>
+                <%= f.text_field :name %>
+                <br>
+                <%= f.label :Quartier %>
+                <%= f.text_field :quartier %>
+                <br>
+                <%= f.label :Parking %>
+                <%= f.collection_select :parking_id, Parking.all, :id, :name, { prompt: "Seclectionné le parking" } %>
+                <br>
+                <%= f.label :Telephone %>
+                <%= f.number_field :telephone %>
+                <br>
+                
+                <%= f.submit "Submit", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</div>

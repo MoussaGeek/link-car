@@ -1,0 +1,31 @@
+<div id="container_p">
+   <div class="container-fluid" id="top_section">
+      <div class="notice" style="top: 5px">
+         <% if flash[:notice] %>
+            <div class="alert alert-success alert-dismissible show fade">
+               <%= flash[:notice] %>
+               <button type="button" class="close" data-dismiss="alert">
+                  <span>&times;</span>
+               </button>
+            </div>
+         <% end %>
+      </div>   
+
+      <div class="row">
+         <p style="font-weight: bold; color: #fff; font-size: 60px" class="col-8 offset-2">Bienvenue<br> sur CarLink</p>
+         <p class="col-8 offset-2 font-weight-bold text-light">Votre parking de confiance de location!<br>Que vous souhaitiez reserver pour votre mariage ou vos deplacements<br> CarLink est là pour vous accompagner.</p> 
+         <% if user_signed_in? %>
+            <p class="col-8 offset-2 font-weight-bold text-light">Voulez-vous tenter l'experience?  <span><%= content_tag :a, "Nos Voitures", href: cars_path, class: "btn btn-light" %></span></p>
+         <% else %>
+            <p class="col-8 offset-2 font-weight-bold text-light">Voulez-vous nous rejoindre?  <span><%= content_tag :a, "S'inscrire", href: new_user_registration_path, class: "btn btn-light" %></span></p>
+         <% end %>
+      </div>
+   </div>
+   <div class="container">
+      <p style="font-weight: bold; font-size: 50px; text-align: center" >Notre mission</p> 
+
+      <p class="font-weight-bold">Notre application web vous permet de réserver facilement des voitures parmi notre parking des sélections. En quelques clics, vous pouvez explorer les parkings disponibles. Nous nous efforçons de rendre votre expérience de réservation aussi fluide que possible.</p></br>
+
+      <p class="font-weight-bold">Rejoignez-nous dès maintenant sur CarLink.  <% unless user_signed_in? %><span><%= content_tag :a, "S'inscrire", href: new_user_registration_path, class: "btn btn-dark" %></span></p><% end %>
+   </div>
+</div>

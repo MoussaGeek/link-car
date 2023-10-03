@@ -1,0 +1,29 @@
+<div id="container_p">
+   <div class="notice">
+      <% if flash[:notice] %>
+         <div class="alert alert-success alert-dismissible show fade">
+            <%= flash[:notice] %>
+            <button type="button" class="close" data-dismiss="alert">
+               <span>&times;</span>
+            </button>
+         </div>
+      <% end %>
+   </div>  
+   <div class="d-flex justify-content-around row">
+      <div class="col-11 col-sm-8 col-md-6">
+         <h2 style="text-align: center; padding-top: 40px">Details Rental</h2>
+         <div class="border border-dark rounded bg-light">
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Date:</strong> <%= @rental.date %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Time:</strong> <%= @rental.time %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Prix de Location:</strong> <%= @rental.car.price_rental %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Nombre de jour:</strong> <%= @rental.duration %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Destination:</strong> <%= @rental.destination %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Name client:</strong> <%= @rental.user.name %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Car_Rental numero_matricule:</strong> <%= @rental.car.numero_matricule %></p>
+            <div class="d-flex justify-content-center pb-3"><%= link_to 'Back', rentals_path, class:"btn btn-outline-dark" %></div>
+         </div>
+      </div>
+   </div>
+</div>
+
+

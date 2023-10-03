@@ -1,0 +1,53 @@
+<div id="container_p">
+  <div class="d-flex justify-content-around row">
+    <div class="col-11 col-sm-8 col-md-6">
+      <h2 style="text-align: center; padding: 20px">Modifier <%= current_user.name %></h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <form>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="form-group">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"input", placeholder:"Nom" %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input", placeholder:"Email" %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="form-group">
+            <i>(laisser vide s'il n'y a pas de changement)</i><br />
+            <%= f.password_field :password, autocomplete: "new-password", class:"input", placeholder:"Mot de passe" %>
+            <% if @minimum_password_length %>
+              <br />
+              <em><%= @minimum_password_length %> caractères au minimum</em>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input", placeholder:"Confirmation mot de passe" %>
+          </div>
+
+          <div class="form-group">
+            <i>(nous avons besoin de votre mot de passe actuel pour confirmer les modifications)</i><br />
+            <%= f.password_field :current_password, autocomplete: "current-password", class:"input", placeholder:"Mot de passe actuel" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Modifier", class:"btn btn-outline-dark" %>
+          </div>
+        </form>
+      <% end %>
+
+      <h3 style="padding-top: 20px">Annuler mon inscription</h3>
+
+      <p>Insatisfait? <%= button_to "Annuler mon inscription", registration_path(resource_name), data: { confirm: "Êtes-vous sûr?" }, method: :delete, class:"btn btn-dark" %></p>
+
+      <div class="pb-3"><%= link_to "Retour", :back, class:"btn btn-outline-dark" %></div>
+    </div>
+  </div>
+</div>

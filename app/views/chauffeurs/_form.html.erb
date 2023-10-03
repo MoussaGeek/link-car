@@ -1,0 +1,37 @@
+<%= form_with(model: chauffeur, local: true) do |form| %>
+  <% if chauffeur.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(chauffeur.errors.count, "error") %> prohibited this chauffeur from being saved:</h2>
+
+      <ul>
+        <% chauffeur.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quartier %>
+    <%= form.text_field :quartier %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parking_id %>
+    <%= form.text_field :parking_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telephone %>
+    <%= form.number_field :telephone %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

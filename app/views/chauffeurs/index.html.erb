@@ -1,0 +1,35 @@
+<div id="container_p">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Chauffeurs</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Telephone</th>
+        <th>Quartier</th>
+        <th>Parking</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @chauffeurs.each do |chauffeur| %>
+        <tr>
+          <td><%= chauffeur.name %></td>
+          <td><%= chauffeur.telephone %></td>
+          <td><%= chauffeur.quartier %></td>
+          <td><%= chauffeur.parking.name %></td>
+          <td><%= link_to 'Show', chauffeur %></td>
+          <td><%= link_to 'Edit', edit_chauffeur_path(chauffeur) %></td>
+          <td><%= link_to 'Destroy', chauffeur, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Chauffeur', new_chauffeur_path %>
+</div>

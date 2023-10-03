@@ -1,0 +1,36 @@
+<div id="container_p">
+    <div class="d-flex justify-content-around row">
+        <div class="col-11 col-sm-8 col-md-6">
+            <h2 style="text-align: center; padding: 20px">Edit Parking</h2>
+            <%= form_for( @parking, url: parking_path(@parking), local: true, method: :patch) do |f| %>
+                <% if @parking.errors.any? %>
+                <div id="error_explanation">
+                    <div class="alert alert-danger">
+                    The form contains <%= pluralize(@parking.errors.count, "error") %>.
+                    </div>
+                    <ul>
+                    <% @parking.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                </div>
+                <% end %>
+            
+                <%= f.label :name %>
+                <%= f.text_field :name %>
+                <br>
+                <%= f.label :name_gerant %>
+                <%= f.text_field :name_gerant %>
+                <br>
+                <%= f.label :email %>
+                <%= f.text_field :email %>
+                <br>
+                <%= f.label :ville %>
+                <%= f.text_field :city %>
+                <br>
+                
+                <%= f.submit "Modifier", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</div>
