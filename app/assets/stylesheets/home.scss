@@ -1,13 +1,13 @@
 
-#section_backgr {
-    background-image: url('car_park.png');
+.section_backgr {
+    background-image: image_url('car_park.png');
     background-size: cover;
     background-repeat: no-repeat;
     padding-top: 100px;
     position: relative;
     height: 100vh;
     background-position: center;
-}
+  }
 ul.social_icon {
     float: right;
 }

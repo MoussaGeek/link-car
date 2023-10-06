@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :cars
   resources :parkings
   resources :chauffeurs
-  resources :rentals, except: [ :edit ]
+  resources :rentals
   resources :users, except: [ :new ]
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

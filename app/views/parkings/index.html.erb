@@ -30,4 +30,9 @@
          <% end %>
       </div>
    </div>
+   <div class="col-12 my-3 text-center">
+      <% if current_user.admin? %>
+         <%= link_to "Créer un parking", new_parking_path, class: "btn btn-primary" %>
+      <% end %>
+   </div>
 </div>

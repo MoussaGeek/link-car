@@ -17,6 +17,9 @@ class RentalsController < ApplicationController
   end
   # GET /rentals/1/edit
   def edit
+    @rental = Rental.find(params[:id])
+    @car = @rental.car
+    @user = current_user
   end
 
   # POST /rentals or /rentals.json
@@ -52,7 +55,7 @@ class RentalsController < ApplicationController
   # DELETE /rentals/1 or /rentals/1.json
   def destroy
     @rental.destroy
-    @car = @reservation.car
+    @car = @rental.car
     @car.update(disponible: true)
 
     respond_to do |format|
@@ -69,7 +72,7 @@ class RentalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rental_params
-      params.require(:rental).permit(:date, :time, :duration, :destination, :car_id, :user_id)
+      params.require(:rental).permit(:date, :time, :duration, :destination, :car_id, :user_id, :chauffeur_id)
     end
 
 end

@@ -13,7 +13,7 @@
     <div class="card mb-3 my-3 mx-auto" style="max-width: 80%;">
       <div class="row no-gutters">
         <div class="col-md-6 ">
-        <%= image_tag @car.photo.variant(resize_to_limit: [500, 500]) if @car.photo.attached? %>
+        <%= image_tag @car.photo.variant(resize_to_limit: [500, 500]), class: "car-image" %>
         </div>
         <div class="col-md-6">
           <div class="card-body">

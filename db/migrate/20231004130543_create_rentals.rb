@@ -7,6 +7,7 @@ class CreateRentals < ActiveRecord::Migration[6.0]
       t.string :destination
       t.references :user, null: false, foreign_key: true
       t.references :car, null: false, foreign_key: true
+      t.references :chauffeur, foreign_key: true
 
       t.timestamps
     end

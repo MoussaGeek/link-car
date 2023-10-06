@@ -1,6 +1,5 @@
-<div id="container_p">
 <%= form_with(model: rental) do |form| %>
-  <% if rental.errors.any? %>
+    <% if rental.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
 
@@ -11,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  
+
 
   <% if rental.car_id.blank? %>
     <% car_id = params[:car_id] %>
@@ -53,5 +52,4 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
-</div>
+  <% end %>

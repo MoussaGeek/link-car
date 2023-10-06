@@ -33,43 +33,43 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbar-content">
-                    <ul class="navbar-nav">
+                  <ul class="navbar-nav">
                     <% if user_signed_in? %>
-                    <% if current_user.admin? %>
-                      <!--<li class="nav-item">
-                        <%= content_tag :a, "Panneau de contrôle", href: rails_admin_path, class: "nav-link" %>
-                      </li>-->
-                      <li class="nav-item">
-                        <%= content_tag :a, "Add_car", href: new_car_path, class: "nav-link" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= content_tag :a, "Add_chauffeur", href: new_chauffeur_path, class: "nav-link" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= content_tag :a, "Add_parking", href: new_parking_path, class: "nav-link" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= content_tag :a, "Réservations", href: rentals_path, class: "nav-link" %>
-                      </li>
+                      <% if current_user.admin? %>
+                        <!--<li class="nav-item">
+                          <%= content_tag :a, "Panneau de contrôle", href: rails_admin_path, class: "nav-link" %>
+                        </li>-->
+                        <li class="nav-item">
+                          <%= content_tag :a, "Parkings", href: parkings_path, class: "nav-link" %>
+                        </li>
+                        <li class="nav-item">
+                          <%= content_tag :a, "Chauffeurs", href: chauffeurs_path, class: "nav-link" %>
+                        </li>
+                        <li class="nav-item">
+                          <%= content_tag :a, "Réservations", href: rentals_path, class: "nav-link" %>
+                        </li>
+                        <li class="nav-item">
+                          <%= content_tag :a, "Utilisateurs", href: users_path, class: "nav-link" %>
+                        </li>
+                      <% end %>   
+                        <li class="nav-item">
+                          <%= content_tag :a, "Voitures", href: cars_path, class: "nav-link" %>
+                        </li>
+                        <% unless current_user.admin? %>
+                        
+                        <% end %>  
+                        <li class="nav-item">
+                          <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, class: "nav-link" %>
+                        </li>
+                      <% else %>   
+                        <li class="nav-item">
+                          <%= content_tag :a, "Connexion", href: new_user_session_path, class: "nav-link" %>
+                        </li>
+                        <li class="nav-item">
+                          <%= content_tag :a, "Inscription", href: new_user_registration_path, class: "nav-link" %>
+                        </li>
                     <% end %>   
-                      <li class="nav-item">
-                        <%= content_tag :a, "Voitures", href: cars_path, class: "nav-link" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= content_tag :a, "Réservations", href: rentals_path, class: "nav-link" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                      </li>
-                    <% else %>   
-                      <li class="nav-item">
-                        <%= content_tag :a, "Connexion", href: new_user_session_path, class: "nav-link" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= content_tag :a, "Inscription", href: new_user_registration_path, class: "nav-link" %>
-                      </li>
-                    <% end %>   
-                    </ul>
+                  </ul>
                 </div>
               </nav>
           </div>
