@@ -1,25 +1,21 @@
 class ChauffeursController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_chauffeur, only: %i[ show edit update destroy ]
 
-  # GET /chauffeurs or /chauffeurs.json
   def index
     @chauffeurs = Chauffeur.all
   end
 
-  # GET /chauffeurs/1 or /chauffeurs/1.json
   def show
   end
 
-  # GET /chauffeurs/new
   def new
     @chauffeur = Chauffeur.new
   end
 
-  # GET /chauffeurs/1/edit
   def edit
   end
 
-  # POST /chauffeurs or /chauffeurs.json
   def create
     @chauffeur = Chauffeur.new(chauffeur_params)
 
@@ -34,7 +30,6 @@ class ChauffeursController < ApplicationController
     end
   end
 
-  # PATCH/PUT /chauffeurs/1 or /chauffeurs/1.json
   def update
     respond_to do |format|
       if @chauffeur.update(chauffeur_params)
@@ -47,7 +42,6 @@ class ChauffeursController < ApplicationController
     end
   end
 
-  # DELETE /chauffeurs/1 or /chauffeurs/1.json
   def destroy
     @chauffeur.destroy
 
@@ -58,12 +52,10 @@ class ChauffeursController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_chauffeur
       @chauffeur = Chauffeur.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def chauffeur_params
       params.require(:chauffeur).permit(:name, :telephone, :quartier, :parking_id)
     end

@@ -2,29 +2,25 @@ class RentalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_rental, only: %i[ show edit update destroy ]
 
-  # GET /rentals or /rentals.json
   def index
     authorize! :index, :rental
     @rentals = Rental.all
     @selected_chauffeur = Chauffeur.find_by(id: params[:chauffeur_id])
   end
 
-  # GET /rentals/1 or /rentals/1.json
   def show
   end
 
-  # GET /rentals/new
   def new
     @rental = Rental.new
   end
-  # GET /rentals/1/edit
+
   def edit
     @rental = Rental.find(params[:id])
     @car = @rental.car
     @user = current_user
   end
 
-  # POST /rentals or /rentals.json
   def create
     car_id = rental_params[:car_id]
     user_id = rental_params[:user_id]
@@ -41,7 +37,6 @@ class RentalsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /rentals/1 or /rentals/1.json
   def update
     @rental = Rental.find(params[:id])
     respond_to do |format|
@@ -55,7 +50,6 @@ class RentalsController < ApplicationController
     end
   end
 
-  # DELETE /rentals/1 or /rentals/1.json
   def destroy
     @rental.destroy
     @car = @rental.car
@@ -68,12 +62,10 @@ class RentalsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_rental
       @rental = Rental.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def rental_params
       params.require(:rental).permit(:date, :time, :duration, :destination, :car_id, :user_id, :chauffeur_id)
     end

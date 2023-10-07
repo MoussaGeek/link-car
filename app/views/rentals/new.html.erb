@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="field">
-                    <label for="showHideChauffeur">Avec chauffeur !</label>
+                    <label for="showHideChauffeur">Voulez-vous un chauffeur !</label>
                     <%= form.check_box :hide_chauffeur, id: "showHideChauffeur" %>
                 </div>
 
@@ -77,17 +77,17 @@
 
                     showHideChauffeurCheckbox.addEventListener('change', function() {
                         if (this.checked) {
-                            chauffeurSelect.style.display = 'block'; // Afficher le champ de sélection du chauffeur
+                            chauffeurSelect.style.display = 'block';
                         } else {
-                            chauffeurSelect.style.display = 'none'; // Cacher le champ de sélection du chauffeur
+                            chauffeurSelect.style.display = 'none';
                         }
                     });
 
                     function refreshPage() {
-                        window.location.reload(); // Recharge la page
+                    window.location.reload();
                     }
 
-                    refreshPageOnce(); // Rafraîchit la page toutes les 1 000 millisecondes (1 seconde)
+                    refreshPageOnce();
                 });
             </script>
         </div>
