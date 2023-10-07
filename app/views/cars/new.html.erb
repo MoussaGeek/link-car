@@ -1,5 +1,6 @@
 <div id="container_p">
-<div style="text-align: center; padding-top: 40px;"><h1>Creation de voiture</h1></div>
+  <div style="text-align: center; padding-top: 40px;"><h1>Creation de voiture</h1></div>
+
   <%= form_with(model: @car) do |form| %>
     <% if @car.errors.any? %>
       <div id="error_explanation">
@@ -12,58 +13,60 @@
         </ul>
       </div>
     <% end %>
-      <div class="card mb-3 my-3 mx-auto" style="max-width: 80%; padding: 10px">
-        <div class="row gutters">
-          <div class="col-md-6">
-            <div class="field">
+
+    <div class="card mb-3 my-3 mx-auto" style="max-width: 80%; padding: 10px">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="field">
             <%= form.label :numero_matricule %>
-            <%= form.text_field :numero_matricule %>
-            </div>
-      
-            <div class="field">
-              <%= form.label :marque %>
-              <%= form.text_field :marque %>
-            </div>
-      
-            <div class="field">
-              <%= form.label :price_rental %>
-              <%= form.number_field :price_rental %>
-            </div>
-      
-            <div class="field">
-              <%= form.label :modele %>
-              <%= form.text_field :modele %>
-            </div>
-      
-            <div class="field">
-              <%= form.label :annee %>
-              <%= form.number_field :annee %>
-            </div>
+            <%= form.text_field :numero_matricule, class: "form-control" %>
           </div>
-          <div class="col-md-6">
-            <div class="card-body">
+
+          <div class="field">
+            <%= form.label :marque %>
+            <%= form.text_field :marque, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :price_rental %>
+            <%= form.number_field :price_rental, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :modele %>
+            <%= form.text_field :modele, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :annee %>
+            <%= form.number_field :annee, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card-body">
             <div class="field">
-            <%= form.label :carburant %>
-            <%= form.text_field :carburant %>
+              <%= form.label :carburant %>
+              <%= form.text_field :carburant, class: "form-control" %>
             </div>
-        
+
             <div class="field">
               <%= form.label :car_type %>
-              <%= form.text_field :car_type %>
+              <%= form.text_field :car_type, class: "form-control" %>
             </div>
-        
+
             <div class="field">
               <%= form.label :photo %>
-              <%= form.file_field :photo %>
+              <%= form.file_field :photo, class: "form-control-file" %>
             </div>
-        
+
             <div class="field">
               <%= form.label :parking_id %>
-              <%= form.collection_select :parking_id, Parking.all, :id, :name, { prompt: "Seclectionné le parking" } %>
+              <%= form.collection_select :parking_id, Parking.all, :id, :name, { prompt: "Sélectionnez le parking" }, { class: "form-control" } %>
             </div>
-          
-            <div class="actions">
-              <%= form.submit "Submit", class: "btn btn-primary" %>
+
+            <div class="actions" style="text-align: center;">
+              <%= form.submit "Submit", class: "btn btn-primary", style: "padding: 10px 20px;" %>
             </div>
           </div>
         </div>

@@ -1,24 +1,23 @@
 <div id="container_p">
     <div class="d-flex justify-content-around row">
         <div class="col-11 col-sm-8 col-md-6">
-        <h2 style="text-align: center; padding: 20px">Reserver une voiture</h2>
+            <h2 style="text-align: center; padding: 20px">Réserver une voiture</h2>
             <%= form_with(model: @rental) do |form| %>
                 <% if @rental.errors.any? %>
                     <div id="error_explanation">
-                    <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
-                    <ul>
-                        <% @rental.errors.each do |error| %>
-                        <li><%= error.full_message %></li>
-                        <% end %>
-                    </ul>
+                        <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
+                        <ul>
+                            <% @rental.errors.each do |error| %>
+                                <li><%= error.full_message %></li>
+                            <% end %>
+                        </ul>
                     </div>
                 <% end %>
-
 
                 <% if @rental.car_id.blank? %>
                     <% car_id = params[:car_id] %>
                 <% else %>
-                    <% car_id = rental.car_id %>
+                    <% car_id = @rental.car_id %>
                 <% end %>
 
                 <div class="field">
@@ -40,16 +39,16 @@
                     <%= form.label :destination %>
                     <%= form.text_field :destination %>
                 </div>
+
                 <div class="field">
                     <label for="showHideChauffeur">Avec chauffeur !</label>
                     <%= form.check_box :hide_chauffeur, id: "showHideChauffeur" %>
                 </div>
 
-                <!-- Champ de sélection du chauffeur initiallement caché -->
+                <!-- Champ de sélection du chauffeur initialement caché -->
                 <div class="field" id="chauffeurSelect" style="display: none;">
                     <%= form.label :chauffeur_id, "Chauffeur" %>
                     <%= form.collection_select :chauffeur_id, Chauffeur.all, :id, :name, { prompt: "Sélectionnez le chauffeur" }, { allow_blank: true } %>
-
                 </div>
 
                 <div class="field">
@@ -60,38 +59,37 @@
                 <div class="field">
                     <%= form.label :user_name %>
                     <%= form.text_field :user_id, value: current_user.id, readonly: true %>
-                </div> 
+                </div>
 
                 <span class="d-flex justify-content-around">
                     <div class="actions">
-                    <%= form.submit "Submit", class: "btn btn-primary" %>
+                        <%= form.submit "Submit", class: "btn btn-primary" %>
                     </div>
                     <div><%= link_to 'Back', cars_path, class:"btn btn-outline-dark" %></div>
                 </span>
             <% end %>
-            
+
             <!-- Script JavaScript -->
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                var showHideChauffeurCheckbox = document.getElementById('showHideChauffeur');
-                var chauffeurSelect = document.getElementById('chauffeurSelect');
+                    var showHideChauffeurCheckbox = document.getElementById('showHideChauffeur');
+                    var chauffeurSelect = document.getElementById('chauffeurSelect');
 
-                showHideChauffeurCheckbox.addEventListener('change', function() {
-                    if (this.checked) {
-                    chauffeurSelect.style.display = 'block'; // Afficher le champ de sélection du chauffeur
-                    } else {
-                    chauffeurSelect.style.display = 'none'; // Cacher le champ de sélection du chauffeur
+                    showHideChauffeurCheckbox.addEventListener('change', function() {
+                        if (this.checked) {
+                            chauffeurSelect.style.display = 'block'; // Afficher le champ de sélection du chauffeur
+                        } else {
+                            chauffeurSelect.style.display = 'none'; // Cacher le champ de sélection du chauffeur
+                        }
+                    });
+
+                    function refreshPage() {
+                        window.location.reload(); // Recharge la page
                     }
-                });
+
+                    refreshPageOnce(); // Rafraîchit la page toutes les 1 000 millisecondes (1 seconde)
                 });
             </script>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-

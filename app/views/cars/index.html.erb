@@ -1,7 +1,7 @@
 <div id="container_p">
   <p id="notice"><%= notice %></p>
 
-  <div style="text-align: center; padding-top: 40px;">
+  <div class="text-center pt-4">
     <h1>Liste des Voitures</h1>
   </div>
 
@@ -60,7 +60,7 @@
 
   <div class="col-12 my-3 text-center">
     <% if current_user.admin? %>
-        <%= link_to "Créer une voiture", new_car_path, class: "btn btn-primary" %>
+      <%= link_to "Créer une voiture", new_car_path, class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
