@@ -18,8 +18,9 @@
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Prix de Location:</strong> <%= number_to_currency(@rental.car.price_rental, unit: 'F CFA') %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Durrée:</strong> <%= pluralize(@rental.duration,"jour") %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Destination:</strong> <%= @rental.destination %></p>
-            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Name client:</strong> <%= @rental.user.name %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Name client:</strong> <%= @rental.user.name %></p> 
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Car_Rental numero_matricule:</strong> <%= @rental.car.numero_matricule %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Chauffeur:</strong><%= @rental.chauffeur.name if @rental.chauffeur %></p>
             <div class="d-flex justify-content-center pb-3"><%= link_to 'Back', cars_path, class:"btn btn-outline-dark" %></div>
          </div>
       </div>

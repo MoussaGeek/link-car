@@ -40,7 +40,7 @@
                     <%= form.label :destination %>
                     <%= form.text_field :destination %>
                 </div>
-                    <div class="field">
+                <div class="field">
                     <label for="showHideChauffeur">Avec chauffeur !</label>
                     <%= form.check_box :hide_chauffeur, id: "showHideChauffeur" %>
                 </div>
@@ -48,7 +48,8 @@
                 <!-- Champ de sélection du chauffeur initiallement caché -->
                 <div class="field" id="chauffeurSelect" style="display: none;">
                     <%= form.label :chauffeur_id, "Chauffeur" %>
-                    <%= form.collection_select :chauffeur_id, Chauffeur.all, :id, :name, { prompt: "Sélectionnez le chauffeur" } %>
+                    <%= form.collection_select :chauffeur_id, Chauffeur.all, :id, :name, { prompt: "Sélectionnez le chauffeur" }, { allow_blank: true } %>
+
                 </div>
 
                 <div class="field">

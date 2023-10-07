@@ -37,6 +37,11 @@
     <%= form.label :destination %>
     <%= form.text_field :destination %>
   </div>
+  
+  <div class="field">
+    <%= form.label :chauffeur_id %>
+    <%= form.collection_select :chauffeur_id, Chauffeur.all, :id, :name, { prompt: "Sélectionnez le chauffeur" }, { selected: @rental.chauffeur_id } %>
+  </div>
 
   <div class="field">
     <%= form.label :car_matricule %>

@@ -4,7 +4,9 @@ class RentalsController < ApplicationController
 
   # GET /rentals or /rentals.json
   def index
+    authorize! :index, :rental
     @rentals = Rental.all
+    @selected_chauffeur = Chauffeur.find_by(id: params[:chauffeur_id])
   end
 
   # GET /rentals/1 or /rentals/1.json
@@ -31,6 +33,7 @@ class RentalsController < ApplicationController
     @car.update(disponible: false)
 
     if @rental.save
+      @selected_chauffeur = Chauffeur.find_by(id: params[:rental][:chauffeur_id])
       flash[:notice] = 'La reservation est fait avec succès.'
       redirect_to @rental
     else
