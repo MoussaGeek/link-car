@@ -11,8 +11,8 @@ MyPark is an application designed for car parking to allow customers to book car
 
 ### How to install in your computer
 ```
-$ git clone https://github.com/MoussaGeek/projetfinal
-$ cd projetfinal
+$ git clone https://github.com/MoussaGeek/link-car
+$ cd link-car
 $ bundle install
 $ yarn install --check-files
 $ rails db:create && rails db:migrate
