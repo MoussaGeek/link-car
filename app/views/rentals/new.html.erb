@@ -70,25 +70,32 @@
             <% end %>
 
             <!-- Script JavaScript -->
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var showHideChauffeurCheckbox = document.getElementById('showHideChauffeur');
-                    var chauffeurSelect = document.getElementById('chauffeurSelect');
-
-                    showHideChauffeurCheckbox.addEventListener('change', function() {
-                        if (this.checked) {
-                            chauffeurSelect.style.display = 'block';
-                        } else {
-                            chauffeurSelect.style.display = 'none';
-                        }
-                    });
-
-                    function refreshPage() {
-                    window.location.reload();
+            <script>  
+            document.addEventListener('DOMContentLoaded', function() {
+                var showHideChauffeurCheckbox = document.getElementById('showHideChauffeur');
+                var chauffeurSelect = document.getElementById('chauffeurSelect');
+        
+                showHideChauffeurCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        chauffeurSelect.style.display = 'block';
+                    } else {
+                        chauffeurSelect.style.display = 'none';
                     }
-
-                    refreshPageOnce();
                 });
+        
+                // Check if the page was refreshed in the last 5 seconds
+                var lastRefreshTime = localStorage.getItem('lastRefreshTime');
+                var currentTime = new Date().getTime();
+                var refreshInterval = 5000; // Set to the desired refresh interval in milliseconds
+        
+                if (!lastRefreshTime || currentTime - lastRefreshTime > refreshInterval) {
+                    // Reload the page if it hasn't been refreshed recently
+                    localStorage.setItem('lastRefreshTime', currentTime);
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 100); // Reload the page after a small delay
+                }
+            });
             </script>
         </div>
     </div>
