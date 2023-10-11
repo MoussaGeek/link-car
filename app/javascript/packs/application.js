@@ -16,3 +16,50 @@ require("jquery")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+function initMap() {
+  const latitude = parseFloat(document.getElementById('latitude').value);
+  const longitude = parseFloat(document.getElementById('longitude').value);
+
+  const location = { lat: latitude, lng: longitude };
+
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 14,
+    center: location,
+  });
+
+  const marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    title: "Lieu du parking",
+  });
+}
+
+window.initMap = initMap;
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var showHideChauffeurCheckbox = document.getElementById('showHideChauffeur');
+  var chauffeurSelect = document.getElementById('chauffeurSelect');
+
+  showHideChauffeurCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+          chauffeurSelect.style.display = 'block';
+      } else {
+          chauffeurSelect.style.display = 'none';
+      }
+  });
+
+  // Check if the page was refreshed in the last 5 seconds
+  var lastRefreshTime = localStorage.getItem('lastRefreshTime');
+  var currentTime = new Date().getTime();
+  var refreshInterval = 5000; // Set to the desired refresh interval in milliseconds
+
+  if (!lastRefreshTime || currentTime - lastRefreshTime > refreshInterval) {
+      // Reload the page if it hasn't been refreshed recently
+      localStorage.setItem('lastRefreshTime', currentTime);
+      setTimeout(function() {
+          window.location.reload();
+      }, 100); // Reload the page after a small delay
+  }
+});

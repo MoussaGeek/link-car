@@ -1,15 +1,14 @@
 <%= form_with(model: rental, html: { class: "my-form" }) do |form| %>
-  <% if rental.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
-      <ul>
-        <% rental.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <div class="notice">
+      <% if flash[:notice] %>
+         <div class="alert alert-success alert-dismissible show fade">
+            <%= flash[:notice] %>
+            <button type="button" class="close" data-dismiss="alert">
+               <span>&times;</span>
+            </button>
+         </div>
+      <% end %>
+  </div>
   <% if rental.car_id.blank? %>
     <% car_id = params[:car_id] %>
   <% else %>

@@ -4,7 +4,7 @@ class RentalsController < ApplicationController
 
   def index
     authorize! :index, :rental
-    @rentals = Rental.all
+    @rentals = Rental.page(params[:page])
     @selected_chauffeur = Chauffeur.find_by(id: params[:chauffeur_id])
   end
 
@@ -33,6 +33,7 @@ class RentalsController < ApplicationController
       flash[:notice] = 'La reservation est fait avec succès.'
       redirect_to @rental
     else
+      @error_message = @rental.errors.full_messages.join(', ')
       render :new
     end
   end

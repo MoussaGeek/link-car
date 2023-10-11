@@ -3,7 +3,7 @@ class ChauffeursController < ApplicationController
   before_action :set_chauffeur, only: %i[ show edit update destroy ]
 
   def index
-    @chauffeurs = Chauffeur.all
+    @chauffeurs = Chauffeur.page(params[:page])
   end
 
   def show
@@ -19,14 +19,12 @@ class ChauffeursController < ApplicationController
   def create
     @chauffeur = Chauffeur.new(chauffeur_params)
 
-    respond_to do |format|
-      if @chauffeur.save
-        format.html { redirect_to chauffeur_url(@chauffeur), notice: "Chauffeur was successfully created." }
-        format.json { render :show, status: :created, location: @chauffeur }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @chauffeur.errors, status: :unprocessable_entity }
-      end
+    if @chauffeur.save
+      flash[:notice] = "Le chauffeur a été créé avec succès."
+      redirect_to @chauffeur
+    else
+      @error_message = @chauffeur.errors.full_messages.join(', ')
+      render :new
     end
   end
 

@@ -1,5 +1,14 @@
 <div id="container_p">
-  <p id="notice"><%= notice %></p>
+  <div class="notice">
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible show fade">
+        <%= flash[:notice] %>
+          <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+          </button>
+      </div>
+    <% end %>
+  </div>
 
   <div class="text-center pt-4">
     <h1>Liste des Voitures</h1>
@@ -34,7 +43,7 @@
             <td><%= car.car_type %></td>
             <td><%= car.annee %></td>
             <td><%= car.parking.name %></td>
-            <td><%= number_to_currency(car.price_rental, unit: 'F CFA') %></td>
+            <td class="price-rental"><%= number_to_currency(car.price_rental, unit: 'F CFA') %></td>
             <td>
               <h5 class="card-title ">
                 <% if car.disponible %>
@@ -44,13 +53,13 @@
                 <% end %>
               </h5>
             </td>
-            <% if current_user.admin? %>
-              <td><%= link_to 'Show', car %></td>
-              <td><%= link_to 'Edit', edit_car_path(car) %></td>
-              <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if current_user.admin? %>              
+              <td><%= button_to 'Show', car_path(car), method: :get, class:"btn btn-dark" %></td>
+              <td><%= button_to 'Modifier', edit_car_path(car), method: :get, class: "btn btn-gray" %></td>
+              <td><%= button_to 'Supprimer', car, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class:"btn btn-danger" %></td>
             <% else %>
-              <td><%= link_to 'Show', car %></td>
-              <td><%= link_to 'Back', cars_path(car), method: :get %></td>
+              <td><%= button_to 'Show', car_path(car), method: :get, class:"btn btn-dark" %></td>
+              <td><%= link_to 'Back', root_path, class:"btn btn-outline-dark" %></td>
             <% end %>
           </tr>
         <% end %>
@@ -63,4 +72,5 @@
       <%= link_to "Créer une voiture", new_car_path, class: "btn btn-primary" %>
     <% end %>
   </div>
+  <div class="d-flex justify-content-center"><%= paginate @cars %></div>
 </div>

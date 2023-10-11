@@ -1,19 +1,28 @@
 <div id="container_p">
-  <div style="text-align: center; padding-top: 40px;"><h1>Creation de voiture</h1></div>
-
+  <div class="notice">
+    <% if flash[:notice] %>
+        <div class="alert alert-success alert-dismissible show fade">
+            <%= flash[:notice] %>
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+    <% end %>
+  </div>
+  <div style="text-align: center; padding-top: 40px;"><h1>Création de voiture</h1></div>
   <%= form_with(model: @car) do |form| %>
     <% if @car.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h2>
-
-        <ul>
-          <% @car.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
+          <div class="alert alert-danger">
+              The form contains <%= pluralize(@car.errors.count, "error") %>.
+          </div>
+          <ul>
+              <% @car.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+          </ul>
       </div>
     <% end %>
-
     <div class="card mb-3 my-3 mx-auto" style="max-width: 80%; padding: 10px">
       <div class="row">
         <div class="col-md-6">

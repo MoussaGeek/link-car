@@ -1,3 +1,11 @@
 td {
     padding: 10px; /* Ajustez la valeur selon votre préférence */
   }
+  
+.btn-gray {
+  background-color: gray;
+  color: white;
+}
+.btn-gray:hover {
+    background-color: darkgray;
+}

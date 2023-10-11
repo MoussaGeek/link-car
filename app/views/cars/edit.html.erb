@@ -1,6 +1,74 @@
 <div id="container_p">
-<div style="text-align: center; padding-top: 40px;"><h1>Edit Voiture</h1></div>
-<%= render 'form', car: @car %>
-<%= link_to 'Show', @car %> |
-<%= link_to 'Back', cars_path %>
+  <div class="notice">
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible show fade">
+          <%= flash[:notice] %>
+          <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+          </button>
+      </div>
+    <% end %>
+  </div>
+  <div style="text-align: center; padding-top: 40px;"><h1>Edit voiture</h1></div>
+
+    <%= form_for(@car, url: car_path(@car), local: true, method: :patch) do |f| %>
+    <div class="card mb-3 my-3 mx-auto" style="max-width: 80%; padding: 10px">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="field">
+            <%= f.label :numero_matricule %>
+            <%= f.text_field :numero_matricule, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :marque %>
+            <%= f.text_field :marque, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :price_rental %>
+            <%= f.number_field :price_rental, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :modele %>
+            <%= f.text_field :modele, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :annee %>
+            <%= f.number_field :annee, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card-body">
+            <div class="field">
+              <%= f.label :carburant %>
+              <%= f.text_field :carburant, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :car_type %>
+              <%= f.text_field :car_type, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :photo %>
+              <%= f.file_field :photo, class: "form-control-file" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :parking_id %>
+              <%= f.collection_select :parking_id, Parking.all, :id, :name, { prompt: "Sélectionnez le parking" }, { class: "form-control" } %>
+            </div>
+
+            <div class="actions" style="text-align: center;">
+              <%= f.submit "Modifier car", class: "btn btn-gray", style: "padding: 10px 20px;" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>

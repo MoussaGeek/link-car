@@ -1,74 +1,88 @@
+<input type="hidden" id="latitude" name="parking[latitude]" value="<%= @parking.latitude %>">
+<input type="hidden" id="longitude" name="parking[longitude]" value="<%= @parking.longitude %>">
 <div id="container_p">
-  <div class="notice">
-    <% if flash[:notice] %>
-      <div class="alert alert-success alert-dismissible show fade">
-        <%= flash[:notice] %>
-        <button type="button" class="close" data-dismiss="alert">
-          <span>&times;</span>
-        </button>
-      </div>
-    <% end %>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-8">
-      <div class="card my-4">
-        <div class="card-body">
-          <h2 class="card-title text-center">Détails du parking</h2>
-          <div class="border border-dark rounded p-4 bg-light">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="parkingName"><strong>Nom :</strong></label>
+  <div class="container">
+    <div class="notice">
+      <% if flash[:notice] %>
+        <div class="alert alert-success alert-dismissible show fade">
+          <%= flash[:notice] %>
+          <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+          </button>
+        </div>
+      <% end %>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8">
+        <div class="card my-4">
+          <div class="card-body">
+            <h2 class="card-title text-center">Détails du parking</h2>
+            <div class="border border-dark rounded p-4 bg-light">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="parkingName"><strong>Nom :</strong></label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <p id="parkingName" class="form-control-static"><%= @parking.name %></p>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <p id="parkingName" class="form-control-static"><%= @parking.name %></p>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="parkingGerant"><strong>Gérant :</strong></label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <p id="parkingGerant" class="form-control-static"><%= @parking.name_gerant %></p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="parkingGerant"><strong>Gérant :</strong></label>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="parkingEmail"><strong>Email :</strong></label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <p id="parkingEmail" class="form-control-static"><%= @parking.email %></p>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <p id="parkingGerant" class="form-control-static"><%= @parking.name_gerant %></p>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="parkingInscription"><strong>Date d'inscription :</strong></label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <p id="parkingInscription" class="form-control-static"><%= @parking.created_at.strftime('%Y-%m-%d') %></p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="parkingEmail"><strong>Email :</strong></label>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <p id="parkingEmail" class="form-control-static"><%= @parking.email %></p>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="parkingInscription"><strong>Date d'inscription :</strong></label>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <p id="parkingInscription" class="form-control-static"><%= @parking.created_at.strftime('%Y-%m-%d') %></p>
-                </div>
-              </div>
-            </div>
-            <div class="text-center">
-              <%= link_to 'Modifier le parking', edit_parking_path, class: "btn btn-outline-dark" %>
+              <% if current_user.admin? %> 
+                  <div class="text-center">
+                    <%= link_to 'Modifier le parking', edit_parking_path, class: "btn btn-gray" %>
+                  </div>
+                <% else %>
+                  <div class="text-center">
+                    <%= link_to 'Back', parkings_path, class:"btn btn-outline-dark" %>
+                  </div>              
+              <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="d-flex justify-content-center">
+      <div id="map" style="width: 100%; height: 400px;"></div>
+    </div>
   </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAPS_API_KEY'] %>&callback=initMap" async defer></script>

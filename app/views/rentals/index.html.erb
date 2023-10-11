@@ -1,5 +1,14 @@
 <div id="container_p">
-  <p id="notice"><%= notice %></p>
+  <div class="notice">
+    <% if flash[:notice] %>
+        <div class="alert alert-success alert-dismissible show fade">
+            <%= flash[:notice] %>
+            <button type="button" class="close" data-dismiss="alert">
+              <span>&times;</span>
+            </button>
+        </div>
+    <% end %>
+  </div>
 
   <div style="text-align: center; padding-top: 40px;"><h1>Liste des Réservations</h1></div>
 
@@ -23,24 +32,25 @@
         <% @rentals.each do |rental| %>
           <tr>
             <td><%= rental.user.name %></td>
-            <td><%= rental.date %></td>
-            <td><%= rental.time %></td>
+            <td><%= rental.format_date %></td>
+            <td><%= rental.format_time %></td>
             <td><%= number_to_currency(rental.car.price_rental, unit: 'F CFA') %></td>
             <td><%= pluralize(rental.duration, "jour") %></td>
             <td><%= rental.destination %></td>
             <td><%= rental.car.numero_matricule %></td>
             <td><%= rental.chauffeur.name if rental.chauffeur %></td>
             <% if current_user.admin? %>
-              <td><%= link_to 'Show', rental %></td>
-              <td><%= link_to 'Modifier', edit_rental_path(rental) %></td>
-              <td><%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= button_to 'Show', rental_path(rental), method: :get, class:"btn btn-dark" %></td>
+            <td><%= button_to 'Modifier', edit_rental_path(rental), method: :get, class: "btn btn-gray" %></td>
+            <td><%= button_to 'Supprimer', rental, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class:"btn btn-danger" %></td>
             <% else %>
-              <td><%= link_to 'Show', rental %></td>
-              <td><%= link_to 'Back', cars_path %></td>
+            <td><%= button_to 'Show', rental_path(rental), method: :get, class:"btn btn-dark" %></td>
+            <td><%= link_to 'Back', cars_path, class:"btn btn-outline-dark" %></td>
             <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
+  <div class="d-flex justify-content-center"><%= paginate @rentals %></div>
 </div>

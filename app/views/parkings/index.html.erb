@@ -20,10 +20,18 @@
                      <p class="d-flex justify-content-around">Nom du gerant: <%= parking.name_gerant %></p>
                      <p class="d-flex justify-content-around">Ville: <%= parking.city %></p>
                      <p class="d-flex justify-content-around">Email: <%= parking.email %></p>
-                     <span class="d-flex justify-content-around"> 
-                        <%= button_to 'Modifier', edit_parking_path(parking), method: :get, class:"btn btn-outline-dark" %>
-                        <%= button_to 'Supprimer', parking, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class:"btn btn-danger" %>              
-                     </span>
+                     <% if current_user.admin? %>
+                        <span class="d-flex justify-content-around"> 
+                           <%= button_to 'Modifier', edit_parking_path(parking), method: :get, class: "btn btn-gray" %>
+                           <%= button_to 'Show', parking_path(parking), method: :get, class:"btn btn-dark" %>
+                           <%= button_to 'Supprimer', parking, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class:"btn btn-danger" %>              
+                        </span>
+                     <% else %>
+                        <span class="d-flex justify-content-around">
+                           <%= button_to 'Show', parking_path(parking), method: :get, class:"btn btn-dark" %>
+                           <%= link_to 'Back', root_path, class:"btn btn-outline-dark" %>              
+                        </span>
+                     <% end %>
                   </div>
                </section>
             </div>
@@ -35,4 +43,5 @@
          <%= link_to "Créer un parking", new_parking_path, class: "btn btn-primary" %>
       <% end %>
    </div>
+   <div class="d-flex justify-content-center"><%= paginate @parkings %></div>
 </div>

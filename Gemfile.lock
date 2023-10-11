@@ -94,8 +94,10 @@ GEM
     faker (3.2.1)
       i18n (>= 1.8.11, < 2)
     ffi (1.16.2)
+    geocoder (1.8.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    gmaps4rails (2.1.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -289,8 +291,11 @@ DEPENDENCIES
   capybara (>= 2.15)
   devise
   faker
+  geocoder
+  gmaps4rails
   image_processing (~> 1.X)
   jbuilder (~> 2.7)
+  kaminari
   letter_opener_web
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
