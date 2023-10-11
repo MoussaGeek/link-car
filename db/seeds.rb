@@ -83,7 +83,7 @@ ActiveRecord::Base.transaction do
     )
   
     car.photo.attach(
-      io: File.open('/asset_url/blog3.jpg'),
+      io: File.open(Rails.root.join('public', 'images', "photo#{n + 1}.jpg")),
       filename: "photo#{n + 1}.jpg"
     )
 
