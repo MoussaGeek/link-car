@@ -79,13 +79,12 @@ ActiveRecord::Base.transaction do
       price_rental: 2000 + n * 100,
       carburant: "Essence",
       disponible: true,
-      parking: Parking.first # Remplacez par l'ID du parking auquel vous souhaitez associer les voitures
+      parking: Parking.first 
     )
   
-    # Attachez une photo à chaque voiture (remplacez par le chemin réel de vos images)
     car.photo.attach(
-      io: File.open('/mnt/c/Users/DELL/OneDrive/Images/projet_img/blog3.jpg'), # Chemin de l'image
-      filename: "photo#{n + 1}.jpg" # Nom du fichier d'image
+      io: File.open('/asset_url/blog3.jpg'),
+      filename: "photo#{n + 1}.jpg"
     )
 
    rental = Rental.create(
@@ -94,11 +93,11 @@ ActiveRecord::Base.transaction do
       duration: 4 + n,
       destination: "Destination #{n + 1}",
       user: User.first,
-      car: car, # Associez la location à la voiture créée
+      car: car,
       chauffeur: Chauffeur.first
     )
 
-    car.update(disponible: false) # Mettez à jour le statut de la voiture
+    car.update(disponible: false)
 
   end
 
