@@ -43,7 +43,7 @@
             <td><%= car.car_type %></td>
             <td><%= car.annee %></td>
             <td><%= car.parking.name %></td>
-            <td class="price-rental"><%= number_to_currency(car.price_rental, unit: 'F CFA') %></td>
+            <td class="price-rental"><%= number_to_currency(car.price_rental, unit: 'F CFA ') %></td>
             <td>
               <h5 class="card-title ">
                 <% if car.disponible %>
@@ -54,11 +54,11 @@
               </h5>
             </td>
             <% if current_user.admin? %>              
-              <td><%= button_to 'Show', car_path(car), method: :get, class:"btn btn-dark" %></td>
+              <td><%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %></td>
               <td><%= button_to 'Modifier', edit_car_path(car), method: :get, class: "btn btn-gray" %></td>
-              <td><%= button_to 'Supprimer', car, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class:"btn btn-danger" %></td>
+              <td><%= button_to 'Supprimer', car, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class: "btn btn-danger custom-button" %></td>
             <% else %>
-              <td><%= button_to 'Show', car_path(car), method: :get, class:"btn btn-dark" %></td>
+              <td><%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %></td>
               <td><%= link_to 'Back', root_path, class:"btn btn-outline-dark" %></td>
             <% end %>
           </tr>

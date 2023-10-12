@@ -24,7 +24,7 @@
               <span style="color: red; font-weight: bold;">Occupé</span>
             <% end %>
           </h5>
-          <p class="card-text price-rental">Prix de location: <%= number_to_currency(@car.price_rental, unit: 'F CFA') %> </p>
+          <p class="card-text price-rental">Prix de location: <%= number_to_currency(@car.price_rental, unit: 'F CFA ') %> </p>
           <p class="card-text">Parking: <%= @car.parking.name%> </p>
           <p class="card-text">Type: <%= @car.car_type %> </p>
           <p class="card-text">Marque: <%= @car.marque %> </p>
@@ -35,7 +35,7 @@
           <div class="d-flex justify-content-around align-items-center mt-3"> 
             <% if current_user.admin? %>
               <%= button_to 'Modifier', edit_car_path(@car), method: :get, class: "btn btn-gray" %>
-              <%= button_to 'Supprimer', car_path(@car), method: :delete, data: {confirm: "Are you sure?" }, class:"btn btn-dark" %>
+              <%= button_to 'Supprimer', car_path(@car), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger custom-button" %>
             <% else %> 
               <%= button_to 'Back', cars_path(@car), method: :get, class:"btn btn-outline-dark" %>  
               <% if @car.disponible? %>

@@ -15,7 +15,7 @@
          <div class="border border-dark rounded bg-light">
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Date:</strong> <%= @rental.format_date %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Time:</strong> <%= @rental.format_time %></p>
-            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Prix de Location:</strong> <%= number_to_currency(@rental.car.price_rental, unit: 'F CFA') %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px" class="price-rental"><strong>Prix de Location:</strong> <%= number_to_currency(@rental.car.price_rental, unit: ' F CFA ') %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Durrée:</strong> <%= pluralize(@rental.duration,"jour") %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Destination:</strong> <%= @rental.destination %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Name client:</strong> <%= @rental.user.name %></p> 

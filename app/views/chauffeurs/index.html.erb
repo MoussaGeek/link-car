@@ -21,8 +21,18 @@
               <p class="card-text">Téléphone: <%= chauffeur.telephone %></p>
               <p class="card-text">Quartier: <%= chauffeur.quartier %></p>
               <p class="card-text">Parking: <%= chauffeur.parking.name %></p>
-              <%= link_to "Modifier", edit_chauffeur_path(chauffeur), class: "btn btn-gray" %>
-              <%= link_to "Supprimer", chauffeur, method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
+              <% if current_user.admin? %>
+              <span class="d-flex justify-content-around">              
+                <%= button_to 'Show', chauffeur_path(chauffeur), method: :get, class: "custom-button btn btn-dark" %>
+                <%= button_to 'Modifier', edit_chauffeur_path(chauffeur), method: :get, class: "btn btn-gray" %>
+                <%= button_to 'Supprimer', chauffeur, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class: "btn btn-danger custom-button" %>
+              </span>
+              <% else %>
+              <span class="d-flex justify-content-around">
+                <%= button_to 'Show', chauffeur_path(chauffeur), method: :get, class: "custom-button btn btn-dark" %>
+                <%= link_to 'Back', root_path, class:"btn btn-outline-dark" %>
+              </span>
+              <% end %>
             </div>
           </div>
         </div>
