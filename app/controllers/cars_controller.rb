@@ -1,6 +1,8 @@
 class CarsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_car, only: %i[ show edit update destroy ]
+  before_action :only_admin, except: [:index, :show]
+
 
   def index
     @cars = Car.page(params[:page])
@@ -19,7 +21,7 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     if @car.save
-      flash[:notice] = "La voiture a été créée avec succès."
+      flash[:notice] = "La voiture a été créer avec succès."
       redirect_to @car
     else
       @error_message = @car.errors.full_messages.join(', ')
@@ -50,5 +52,9 @@ class CarsController < ApplicationController
 
     def set_car
       @car = Car.find(params[:id])
+    end
+
+    def only_admin
+      redirect_to root_path unless current_user&.admin?
     end
 end

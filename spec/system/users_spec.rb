@@ -6,7 +6,7 @@ RSpec.describe "Users", type: :system do
       it 'redirect to root path' do
         visit new_user_registration_path
         fill_in 'Nom', with: 'Cedrik'
-        fill_in 'Email', with: 'cedrik@gmail.com'
+        fill_in 'Email', with: 'ceedrik@gmail.com'
         fill_in 'Mot de passe', with: '123456'
         fill_in 'Confirmation mot de passe', with: '123456'
         click_on 'S\'inscrire'
@@ -38,7 +38,7 @@ RSpec.describe "Users", type: :system do
       end
       it 'will work and redirect to root path' do
         visit new_user_session_path
-        fill_in 'Email', with: 'cedrik@gmail.com'
+        fill_in 'Email', with: 'ceedrik@gmail.com'
         fill_in 'Mot de passe', with: '123456'
         click_on 'Se connecter'
         click_on 'Ma page'
@@ -65,11 +65,11 @@ RSpec.describe "Users", type: :system do
       end
       it 'is successfully working' do
         visit new_user_session_path
-        fill_in 'Email', with: 'cedrik@gmail.com'
+        fill_in 'Email', with: 'ceedrik@gmail.com'
         fill_in 'Mot de passe', with: '123456'
         click_on 'Se connecter'
         expect(page).to have_content 'Connecté.'
-        click_on 'Deconnexion'
+        click_on 'Déconnexion'
         expect(page).to have_content 'Déconnecté.'
       end
     end
@@ -82,11 +82,11 @@ RSpec.describe "Users", type: :system do
       end
       it 'only admin user is able to access to admin dashboard' do
         visit new_user_session_path
-        fill_in 'Email', with: 'cedrik@gmail.com'
+        fill_in 'Email', with: 'ceedrik@gmail.com'
         fill_in 'Mot de passe', with: '123456'
         click_on 'Se connecter'
         expect(page).not_to have_content 'Panneau de contrôle'
-        click_on 'Deconnexion'
+        click_on 'Déconnexion'
         click_on 'Connexion'
         fill_in 'Email', with: 'admin@example.com'
         fill_in 'Mot de passe', with: 'password'
@@ -130,7 +130,7 @@ RSpec.describe "Users", type: :system do
         visit users_path
         sleep(2)
         click_on('Modifier', match: :first)
-        fill_in 'Mot de passe', with: '123456'
+        fill_in 'Mot de passe', with: '123456', visible: :all
         fill_in 'Confirmation mot de passe', with: '123456'
         check 'Admin'
         click_on 'Modifier'

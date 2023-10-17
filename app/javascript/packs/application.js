@@ -50,16 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
-  // Check if the page was refreshed in the last 5 seconds
   var lastRefreshTime = localStorage.getItem('lastRefreshTime');
   var currentTime = new Date().getTime();
-  var refreshInterval = 5000; // Set to the desired refresh interval in milliseconds
+  var refreshInterval = 5000;
 
   if (!lastRefreshTime || currentTime - lastRefreshTime > refreshInterval) {
-      // Reload the page if it hasn't been refreshed recently
       localStorage.setItem('lastRefreshTime', currentTime);
       setTimeout(function() {
           window.location.reload();
-      }, 100); // Reload the page after a small delay
+      }, 100);
   }
 });

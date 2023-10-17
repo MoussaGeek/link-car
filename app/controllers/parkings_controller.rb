@@ -1,6 +1,7 @@
 class ParkingsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_parking, only: %i[ show edit update destroy ]
+  before_action :only_admin, except: [:index, :show]
 
   def index
     @parkings = Parking.page(params[:page])
@@ -64,5 +65,9 @@ class ParkingsController < ApplicationController
 
     def parking_params
         params.require(:parking).permit(:name, :name_gerant, :email, :city, :latitude, :longitude)
+    end
+
+    def only_admin
+      redirect_to root_path unless current_user&.admin?
     end
 end

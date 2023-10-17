@@ -1,0 +1,118 @@
+fr:
+  activerecord:
+    models:
+      user: Utilisateur
+      parking: Parking
+      chauffeur: Chauffeur
+      car: Voiture
+      rental: Réservation
+    attributes:
+      user:
+        name: Nom
+        email: Email
+        password: Mot de passe
+        password_confirmation: Confirmation mot de passe
+        current_password: Mot de passe actuel
+      parking:
+        name: Nom_parking
+        name_gerant: Nom_gérant
+        email: Email
+        city: ville
+      chauffeur:
+        name: Nom_chauffeur
+        quartier: Quartier
+        telephone: télephone
+        parking_id: Parking_Identifiant
+      car:
+        numero_matricule: Numero_matricule
+        marque: Marque
+        price_rental: Prix_Location
+        modele: Modèle
+        annee: Année_sorti
+        carburant: Carburant
+        car_type: Type_voiture
+        photo: Photo
+        disponible: Disponibilité
+      rental:
+        date: Date
+        time: Heure
+        duration: Nombre_jour
+        destination: Lieu
+        user_id: Client
+        car_id: Numéro matricule du voiture réserver
+        chauffeur_id: Nom_chauffeur 
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: que vous avez saisi est déjà utilisé.
+              blank: n'a pas été saisi.
+            password:
+              blank: n'a pas été saisi.
+              too_short: que vous avez saisi est trop court.
+            current_password:
+              blank: n'a pas été saisi.
+              invalid: que vous avez saisi ne correspond pas au mot de passe actuel.
+            password_confirmation:
+              confirmation: est différent du mot de passe saisi.
+            name:
+              blank: n'a pas été saisi.
+        parking:
+          attributes:
+            name:
+              blank: n'a pas été saisi.
+            name_gerant:
+              blank: n'a pas été saisi.
+            email:
+              taken: que vous avez saisi est déjà utilisé.
+              blank: n'a pas été saisi.
+            city:
+              blank: n'a pas été saisi.
+        chauffeur:
+          attributes:
+            name:
+              blank: n'a pas été saisi.
+            quartier:
+              blank: n'a pas été saisi.
+            telephone:
+              taken: que vous avez saisi est déjà utilisé.
+              blank: n'a pas été saisi.
+            parking_id:
+              blank: n'a pas été sélectionné.
+        car:
+          attributes:
+            numero_matricule:
+              taken: que vous avez saisi est déjà utilisé.
+              blank: n'a pas été saisi.
+            marque:
+              blank: n'a pas été saisi.
+            price_rental:
+              blank: n'a pas été saisi.
+            modele:
+              blank: n'a pas été saisi.
+            annee:
+              blank: n'a pas été saisi.
+            carburant:
+              blank: n'a pas été saisi.
+            car_type:
+              blank: n'a pas été saisi.
+            photo:
+              blank: n'a pas été attaché.
+        rental:
+          attributes:
+            duration:
+              blank: n'a pas été saisi.
+            destination:
+              required: n'a pas été saisi.
+              blank: n'a pas été saisi.
+            chauffeur_id:
+              blank: la réservation est fait sans chauffeur.
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      next: "&rsaquo;"
+      previous: "&lsaquo;"
+      truncate: "&hellip;"            
+            

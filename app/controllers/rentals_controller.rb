@@ -1,5 +1,6 @@
 class RentalsController < ApplicationController
   before_action :authenticate_user!
+  before_action :only_admin, only: [:new]
   before_action :set_rental, only: %i[ show edit update destroy ]
 
   def index
@@ -71,4 +72,10 @@ class RentalsController < ApplicationController
       params.require(:rental).permit(:date, :time, :duration, :destination, :car_id, :user_id, :chauffeur_id)
     end
 
+    def only_admin
+      if current_user&.admin?
+        flash[:alert] = "Accès refusé aux administrateurs."
+        redirect_to root_path
+      end
+    end
 end

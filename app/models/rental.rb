@@ -13,11 +13,7 @@ class Rental < ApplicationRecord
   def format_time
       time.strftime('%H:%M')
   end
-
-  def format_duration
-      "%dh %02dm" % duration.divmod(60)
-  end
-
+  
   def appointment_time
       (time - 1800).strftime('%H:%M')
   end

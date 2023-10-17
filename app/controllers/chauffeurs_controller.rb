@@ -1,6 +1,7 @@
 class ChauffeursController < ApplicationController
   before_action :authenticate_user!
   before_action :set_chauffeur, only: %i[ show edit update destroy ]
+  before_action :only_admin
 
   def index
     @chauffeurs = Chauffeur.page(params[:page])
@@ -56,5 +57,9 @@ class ChauffeursController < ApplicationController
 
     def chauffeur_params
       params.require(:chauffeur).permit(:name, :telephone, :quartier, :parking_id)
+    end
+
+    def only_admin
+      redirect_to root_path unless current_user&.admin?
     end
 end
