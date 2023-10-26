@@ -10,7 +10,7 @@
         <% end %>
     </div>
     <div class="d-flex justify-content-around row">
-        <div class="col-11 col-sm-8 col-md-6">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6"> <!-- Utilisation des classes Bootstrap pour la réactivité -->
             <h2 style="text-align: center; padding: 20px">Réserver une voiture</h2>
             <%= form_with(model: @rental) do |form| %>
                 <% if @rental.errors.any? %>
@@ -30,53 +30,53 @@
                     <% car_id = @rental.car_id %>
                 <% end %>
 
-                <div class="field">
-                    <%= form.label :date %>
-                    <%= form.date_select :date %>
+                <div class="field form-group">
+                    <%= form.label :date, class: "form-control" %>
+                    <%= form.date_select :date, class: "form-control" %>
                 </div>
 
-                <div class="field">
-                    <%= form.label :time %>
-                    <%= form.time_select :time %>
+                <div class="field form-group">
+                    <%= form.label :time, class: "form-control" %>
+                    <%= form.time_select :time, class: "form-control" %>
                 </div>
 
-                <div class="field">
-                    <%= form.label :duration %>
-                    <%= form.number_field :duration %>
+                <div class="field form-group">
+                    <%= form.label :duration, class: "form-control" %>
+                    <%= form.number_field :duration, class: "form-control" %>
                 </div>
 
-                <div class="field">
-                    <%= form.label :destination %>
-                    <%= form.text_field :destination %>
+                <div class="field form-group">
+                    <%= form.label :destination, class: "form-control" %>
+                    <%= form.text_field :destination, class: "form-control" %>
                 </div>
 
-                <div class="field">
+                <div class="field form-group">
                     <label for="showHideChauffeur">Voulez-vous un chauffeur !</label>
                     <%= form.check_box :hide_chauffeur, id: "showHideChauffeur" %>
                 </div>
 
                 <!-- Champ de sélection du chauffeur initialement caché -->
-                <div class="field" id="chauffeurSelect" style="display: none;">
-                    <%= form.label :chauffeur_id, "Chauffeur" %>
-                    <%= form.collection_select :chauffeur_id, Chauffeur.all, :id, :name, { prompt: "Sélectionnez le chauffeur" }, { allow_blank: true } %>
+                <div class="field form-group" id="chauffeurSelect" style="display: none;">
+                    <%= form.label :chauffeur_id, "Chauffeur", class: "form-control" %>
+                    <%= form.collection_select :chauffeur_id, Chauffeur.all, :id, :name, { prompt: "Sélectionnez le chauffeur" }, { allow_blank: true, class: "form-control" } %>
                 </div>
 
-                <div class="field">
-                    <%= form.label :car_matricule %>
-                    <%= form.text_field :car_id, value: car_id, readonly: true %>
+                <div class="field form-group">
+                    <%= form.label :car_matricule, class: "form-control" %>
+                    <%= form.text_field :car_id, value: car_id, readonly: true, class: "form-control" %>
                 </div>
 
-                <div class="field">
-                    <%= form.label :user_name %>
-                    <%= form.text_field :user_id, value: current_user.id, readonly: true %>
+                <div class="field form-group">
+                    <%= form.label :user_name, class: "form-control" %>
+                    <%= form.text_field :user_id, value: current_user.id, readonly: true, class: "form-control" %>
                 </div>
 
-                <span class="d-flex justify-content-around">
+                <div class="d-flex justify-content-around">
                     <div class="actions">
                         <%= form.submit "Submit", class: "btn btn-primary" %>
                     </div>
                     <div><%= link_to 'Back', cars_path, class:"btn btn-outline-dark" %></div>
-                </span>
+                </div>
             <% end %>
         </div>
     </div>

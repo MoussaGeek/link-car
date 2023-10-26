@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :chauffeurs
   resources :rentals
   resources :users, except: [:new]
+  resources :rental_histories, only: [:index]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

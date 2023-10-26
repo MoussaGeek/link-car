@@ -27,10 +27,10 @@ RSpec.describe "Parkings", type: :system do
         click_on 'Se connecter'
         click_on 'Parkings'
         click_on 'Créer un parking'
-        fill_in 'Name', with: 'Pantere'
-        fill_in 'Name_gerant', with: 'Fily'
-        fill_in 'City', with: 'Kayes'
+        fill_in 'Nom du parking', with: 'Pantere'
+        fill_in 'Nom du gérant', with: 'Kaou'
         fill_in 'Email', with: 'ceedrik@gmail.com'
+        fill_in 'Ville', with: 'Kayes'
         fill_in 'Latitude', with: '14.666'
         fill_in 'Longitude', with: '-6.4555'
         click_on 'Créer'
@@ -48,14 +48,14 @@ RSpec.describe "Parkings", type: :system do
         click_on 'Se connecter'
         sleep(3)
         visit parking_path(@parking.id)
-        click_on 'Modifier'
-        fill_in 'Name', with: 'Panne'
-        fill_in 'Name_gerant', with: 'Kaka'
-        fill_in 'City', with: 'Koulikoro'
+        click_on 'Modifier le parking'
+        fill_in 'Nom du parking', with: 'Panne'
+        fill_in 'Nom du gérant', with: 'Kaka'
         fill_in 'Email', with: 'look@gmail.com'
+        fill_in 'Ville', with: 'Koulikoro'
         fill_in 'Latitude', with: '12.86273'
         fill_in 'Longitude', with: '-7.55985'
-        click_on 'Modifier le parking'
+        click_on 'Modifier'
         expect(page).to have_content 'Le parking a été modifier avec succès.'
       end
     end

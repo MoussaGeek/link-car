@@ -3,6 +3,14 @@ class Car < ApplicationRecord
   has_many :rentals, dependent: :destroy
   has_one_attached :photo
 
+  def update_status_after_numero_matricule_change(new_numero_matricule)
+    if numero_matricule_changed?
+      rentals.destroy_all
+      update(disponible: true)
+    end
+  end
+
+
   validates :marque, presence: true
   validates :price_rental, presence: true
   validates :modele, presence: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_10_182450) do
+ActiveRecord::Schema.define(version: 2023_10_24_052434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,21 @@ ActiveRecord::Schema.define(version: 2023_10_10_182450) do
     t.float "longitude"
   end
 
+  create_table "rental_histories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date"
+    t.time "time"
+    t.decimal "price"
+    t.integer "duration"
+    t.string "destination"
+    t.string "car_matricule"
+    t.string "chauffeur"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_rental_histories_on_user_id"
+  end
+
   create_table "rentals", force: :cascade do |t|
     t.date "date"
     t.time "time"
@@ -111,6 +126,7 @@ ActiveRecord::Schema.define(version: 2023_10_10_182450) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cars", "parkings"
   add_foreign_key "chauffeurs", "parkings"
+  add_foreign_key "rental_histories", "users"
   add_foreign_key "rentals", "cars"
   add_foreign_key "rentals", "chauffeurs"
   add_foreign_key "rentals", "users"

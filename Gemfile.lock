@@ -197,6 +197,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (7.0.8)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     rails_admin (3.1.2)
       activemodel-serializers-xml (>= 1.0)
       kaminari (>= 0.14, < 2.0)
@@ -311,7 +314,7 @@ DEPENDENCIES
   bootstrap-kaminari-views
   byebug
   cancancan
-  capybara (>= 3.39.2, >= 2.15)
+  capybara (~> 3.39, >= 3.39.2)
   devise
   factory_bot_rails
   faker
@@ -325,6 +328,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.3)
+  rails-i18n
   rails_admin (~> 3.0)
   ransack
   rexml

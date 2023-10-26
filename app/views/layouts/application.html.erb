@@ -34,23 +34,26 @@
                 <div class="collapse navbar-collapse" id="navbar-content">
                   <ul class="navbar-nav ml-auto">
                     <% if user_signed_in? %>
-                      <% if current_user.admin? %>
-                        <li class="nav-item">
-                          <%= content_tag :a, "Panneau de contrôle", href: rails_admin_path, class: "nav-link" %>
-                        </li>
-                        <li class="nav-item">
-                          <%= content_tag :a, "Parkings", href: parkings_path, class: "nav-link" %>
-                        </li>
-                        <li class="nav-item">
-                          <%= content_tag :a, "Chauffeurs", href: chauffeurs_path, class: "nav-link" %>
-                        </li>
-                        <li class="nav-item">
-                          <%= content_tag :a, "Réservations", href: rentals_path, class: "nav-link" %>
-                        </li>
-                        <li class="nav-item">
-                          <%= content_tag :a, "Utilisateurs", href: users_path, class: "nav-link" %>
-                        </li>
-                      <% end %>
+                    <% if current_user.admin? %>
+                      <li class="nav-item">
+                        <%= content_tag :a, "Panneau de contrôle", href: rails_admin_path, class: "nav-link" %>
+                      </li>
+                      <li class="nav-item">
+                        <%= content_tag :a, "Parkings", href: parkings_path, class: "nav-link" %>
+                      </li>
+                      <li class="nav-item">
+                        <%= content_tag :a, "Chauffeurs", href: chauffeurs_path, class: "nav-link" %>
+                      </li>
+                      <li class="nav-item">
+                        <%= content_tag :a, "Réservations", href: rentals_path, class: "nav-link" %>
+                      </li>
+                      <li class="nav-item">
+                        <%= content_tag :a, "Réservation_log", href: rental_histories_path, class: "nav-link" %>
+                      </li>
+                      <li class="nav-item">
+                        <%= content_tag :a, "Utilisateurs", href: users_path, class: "nav-link" %>
+                      </li>
+                    <% end %>
                       <li class="nav-item">
                         <%= content_tag :a, "Voitures", href: cars_path, class: "nav-link" %>
                       </li>

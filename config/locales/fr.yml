@@ -14,33 +14,33 @@ fr:
         password_confirmation: Confirmation mot de passe
         current_password: Mot de passe actuel
       parking:
-        name: Nom_parking
-        name_gerant: Nom_gérant
+        name: Nom du parking
+        name_gerant: Nom du gérant
         email: Email
-        city: ville
+        city: Ville
       chauffeur:
-        name: Nom_chauffeur
+        name: Nom du chauffeur
         quartier: Quartier
-        telephone: télephone
-        parking_id: Parking_Identifiant
+        telephone: Télephone
+        parking_id: Parking Identifiant
       car:
-        numero_matricule: Numero_matricule
+        numero_matricule: Numero matricule
         marque: Marque
-        price_rental: Prix_Location
+        price_rental: Prix de Location
         modele: Modèle
-        annee: Année_sorti
+        annee: Année de sorti
         carburant: Carburant
-        car_type: Type_voiture
+        car_type: Type de voiture
         photo: Photo
         disponible: Disponibilité
       rental:
         date: Date
         time: Heure
-        duration: Nombre_jour
+        duration: Nombre du jour
         destination: Lieu
         user_id: Client
         car_id: Numéro matricule du voiture réserver
-        chauffeur_id: Nom_chauffeur 
+        chauffeur_id: Nom du chauffeur 
     errors:
       models:
         user:

@@ -46,7 +46,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15', '>= 3.39.2'
+  gem 'capybara', '~> 3.39', '>= 3.39.2'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
@@ -67,3 +67,4 @@ gem 'ransack'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'kaminari'
+gem 'rails-i18n'

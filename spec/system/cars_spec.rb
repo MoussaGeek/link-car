@@ -60,7 +60,7 @@ RSpec.describe "Cars", type: :system do
         fill_in 'Carburant', with: 'Essence'
         fill_in 'Type_voiture', with: 'Camion'
         attach_file 'Photo', Rails.root.join('spec', 'fixtures', 'test_image.jpg')
-        select(@parking.name, from: 'Parking')
+        select(@parking.name, from: 'Nom_Parking')
         click_on 'Modifier la voiture'
         expect(page).to have_content 'La voiture a été modifier avec succès.'
       end
@@ -81,7 +81,7 @@ RSpec.describe "Cars", type: :system do
         fill_in 'Date', with: 'V8'
         fill_in 'Time', with: '25000'
         fill_in 'Duration', with: '1'
-        select(@chauffeur.name, from: 'Chauffeur')
+        select(@chauffeur.name, from: 'Nom_chauffeur')
         click_on 'Submit'
         expect(page).to have_content 'La voiture a été réserver avec succès.'
       end
