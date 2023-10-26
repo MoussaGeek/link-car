@@ -24,7 +24,7 @@ fr:
         telephone: Télephone
         parking_id: Parking Identifiant
       car:
-        numero_matricule: Numero matricule
+        numero_matricule: Numéro matricule
         marque: Marque
         price_rental: Prix de Location
         modele: Modèle

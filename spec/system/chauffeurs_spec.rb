@@ -27,8 +27,8 @@ RSpec.describe "Chauffeurs", type: :system do
         click_on 'Se connecter'
         click_on 'Chauffeurs'
         click_on 'Créer un chauffeur'
-        fill_in 'Nom_chauffeur', with: 'Madou'
-        fill_in 'Nom_gerant', with: 'Fily'
+        fill_in 'Nom du chauffeur', with: 'Madou'
+        fill_in 'Nom du gérant', with: 'Fily'
         fill_in 'Ville', with: 'Kayes'
         fill_in 'Email', with: 'ceedrik@gmail.com'
         fill_in 'Latitude', with: '14.666'
@@ -49,8 +49,8 @@ RSpec.describe "Chauffeurs", type: :system do
         sleep(3)
         visit parking_path(@parking.id)
         click_on 'Modifier'
-        fill_in 'Nom_parking', with: 'Panne'
-        fill_in 'Nom_gerant', with: 'Kaka'
+        fill_in 'Nom du parking', with: 'Panne'
+        fill_in 'Nom du gérant', with: 'Kaka'
         fill_in 'Ville', with: 'Koulikoro'
         fill_in 'Email', with: 'look@gmail.com'
         fill_in 'Latitude', with: '12.86273'

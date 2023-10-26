@@ -27,13 +27,13 @@ RSpec.describe "Cars", type: :system do
         click_on 'Se connecter'
         click_on 'Voitures'
         click_on 'Créer une voiture'
-        fill_in 'Numero_matricule', with: 'KL337DD'
+        fill_in 'Numéro matricule', with: 'KL337DD'
         fill_in 'Marque', with: 'V8'
-        fill_in 'Prix_Location', with: '25000'
+        fill_in 'Prix de Location', with: '25000'
         fill_in 'Modèle', with: 'Renault'
-        fill_in 'Année_sorti', with: '2003'
+        fill_in 'Année de sorti', with: '2003'
         fill_in 'Carburant', with: 'Gasoil'
-        fill_in 'Type_voiture', with: 'Voiture'
+        fill_in 'Type de voiture', with: 'Voiture'
         attach_file 'Photo', Rails.root.join('spec', 'fixtures', 'test_image.jpg')
         select(@parking.name, from: 'Parking')
         click_on 'Créer'
@@ -52,13 +52,13 @@ RSpec.describe "Cars", type: :system do
         sleep(3)
         visit cars_path
         click_on 'Modifier'
-        fill_in 'Numero_matricule', with: 'KL337DP'
+        fill_in 'Numéro matricule', with: 'KL337DP'
         fill_in 'Marque', with: '4x4'
-        fill_in 'Prix_Location', with: '27000'
+        fill_in 'Prix de Location', with: '27000'
         fill_in 'Modèle', with: 'Bougatti'
-        fill_in 'Année_sorti', with: '2007'
+        fill_in 'Année de sorti', with: '2007'
         fill_in 'Carburant', with: 'Essence'
-        fill_in 'Type_voiture', with: 'Camion'
+        fill_in 'Type de voiture', with: 'Camion'
         attach_file 'Photo', Rails.root.join('spec', 'fixtures', 'test_image.jpg')
         select(@parking.name, from: 'Nom_Parking')
         click_on 'Modifier la voiture'
@@ -81,7 +81,7 @@ RSpec.describe "Cars", type: :system do
         fill_in 'Date', with: 'V8'
         fill_in 'Time', with: '25000'
         fill_in 'Duration', with: '1'
-        select(@chauffeur.name, from: 'Nom_chauffeur')
+        select(@chauffeur.name, from: 'Nom du chauffeur')
         click_on 'Submit'
         expect(page).to have_content 'La voiture a été réserver avec succès.'
       end
