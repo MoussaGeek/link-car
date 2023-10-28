@@ -12,11 +12,6 @@ ActiveRecord::Base.transaction do
   Chauffeur.destroy_all
   Rental.destroy_all
 
-  ActiveRecord::Base.connection.reset_pk_sequence!('parkings')
-  ActiveRecord::Base.connection.reset_pk_sequence!('cars')
-  ActiveRecord::Base.connection.reset_pk_sequence!('chauffeurs')
-  ActiveRecord::Base.connection.reset_pk_sequence!('rentals')
-
   5.times do |n|
     User.create!(
       name: "User#{n+1}",
