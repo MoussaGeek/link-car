@@ -9,15 +9,15 @@
       </div>
     <% end %>
   </div>
-  <div style="text-align: center; padding-top: 40px;"><h1>Car Détail</h1></div>
+  <div style="text-align: center; padding-top: 40px;"><h1>Car détail</h1></div>
   <div class="card mb-3 my-3 mx-auto" style="max-width: 80%;">
     <div class="row no-gutters">
       <div class="col-md-6">
-        <%= image_tag @car.photo.variant(resize_to_limit: [500, 500]), class: "car-image img-fluid" %>
+      <%= image_tag @car.photo.variant(resize_to_fill: [500, 400]), class: "car-image img-fluid" %>
       </div>
       <div class="col-md-6">
         <div class="card-body">
-          <h5 class="card-title">
+          <h5 class="card-title text-center">
             <% if @car.disponible %>
               <span style="color: green; font-weight: bold;">Disponible</span>
             <% else %>
@@ -34,7 +34,7 @@
 
           <div class="d-flex justify-content-around align-items-center mt-3"> 
             <% if current_user.admin? %>
-              <%= button_to 'Modifier', edit_car_path(@car), method: :get, class: "btn btn-gray" %>
+              <%= button_to 'Modifier car', edit_car_path(@car), method: :get, class: "btn btn-gray" %>
               <%= button_to 'Supprimer', car_path(@car), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger custom-button" %>
             <% else %> 
               <%= button_to 'Back', cars_path(@car), method: :get, class:"btn btn-outline-dark" %>  

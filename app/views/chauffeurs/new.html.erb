@@ -38,8 +38,14 @@
                 <%= f.label :Telephone %>
                 <%= f.number_field :telephone %>
                 <br>
-                
-                <%= f.submit "Submit", class: "btn btn-primary" %>
+                <%= f.label :photo_permis %>
+                <%= f.file_field :photo_permis %>
+                <br>
+                <%= f.label :photo_carte %>
+                <%= f.file_field :photo_carte %>
+                <br>
+
+                <%= f.submit "Créer", class: "btn btn-primary" %>
             <% end %>
         </div>
     </div>

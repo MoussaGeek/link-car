@@ -35,7 +35,9 @@
                   <ul class="navbar-nav ml-auto">
                     <% if user_signed_in? %>
                     <% if current_user.admin? %>
-                      
+                      <li class="nav-item">
+                        <%= content_tag :a, "Panneau de contrôle", href: rails_admin_path, class: "nav-link" %>
+                      </li>
                       <li class="nav-item">
                         <%= content_tag :a, "Parkings", href: parkings_path, class: "nav-link" %>
                       </li>
@@ -90,7 +92,7 @@
       <%= yield %>
       <div class="copyright text-center py-3">
         <p style="color: #fff; font-size: 20px">© 2023 Tous Droits Réservés.   CarLink</p>
-        <ul class="social_icon">
+        <ul class="social_icon" style="margin-left: 10px;">
           <li><a href="https://www.facebook.com/moussa.diakite.1422"><i class="bi bi-facebook"></i></a></li>
           <li><a href="https://www.linkedin.com/in/moussa-diakite-88335728b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BEYlsQLx%2FS3marOVOBE4s3A%3D%3D"><i class="bi bi-linkedin" aria-hidden="true"></i></a></li>
           <li><a href="https://www.instagram.com/moussadiakite1963/"><i class="bi bi-instagram" aria-hidden="true"></i></a></li>

@@ -1,4 +1,6 @@
 class RentalHistoriesController < ApplicationController
+    before_action :authenticate_user!
+    before_action :only_admin
     def index
         @rental_histories = RentalHistory.page(params[:page])
     end
@@ -11,6 +13,10 @@ class RentalHistoriesController < ApplicationController
     def by_parking
         @parking = Parking.find(params[:parking_id])
         @rental_histories = RentalHistory.where(parking_id: @parking.id).page(params[:page])
+    end
+
+    def only_admin
+        redirect_to root_path unless current_user&.admin?
     end
     
 end

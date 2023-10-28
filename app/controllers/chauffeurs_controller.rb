@@ -56,7 +56,7 @@ class ChauffeursController < ApplicationController
     end
 
     def chauffeur_params
-      params.require(:chauffeur).permit(:name, :telephone, :quartier, :parking_id)
+      params.require(:chauffeur).permit(:name, :telephone, :quartier, :parking_id, :photo_permis, :photo_carte)
     end
 
     def only_admin

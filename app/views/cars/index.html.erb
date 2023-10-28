@@ -3,15 +3,15 @@
     <% if flash[:notice] %>
       <div class="alert alert-success alert-dismissible show fade">
         <%= flash[:notice] %>
-        <button type="button" class="close" data-dismiss="alert">
-          <span>&times;</span>
-        </button>
+          <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+          </button>
       </div>
     <% end %>
   </div>
 
   <div class="text-center pt-4">
-    <h1>Liste des Voitures</h1>
+    <h1>Liste des voitures</h1>
   </div>
 
   <%= form_tag(cars_path, method: :get, class: "my-3") do %>
@@ -55,18 +55,16 @@
       <tbody>
         <% @cars.each do |car| %>
           <tr>
-            <td class="d-none d-md-table-cell">
-              <%= image_tag car.photo.variant(resize_to_limit: [100, 100]) if car.photo.attached? %>
-            </td>
+            <td><%= image_tag car.photo.variant(resize_to_limit: [100, 100]) if car.photo.attached? %></td>
             <td><%= car.numero_matricule %></td>
-            <td class="d-none d-md-table-cell"><%= car.marque %></td>
-            <td class="d-none d-md-table-cell"><%= car.modele %></td>
-            <td class="d-none d-md-table-cell"><%= car.carburant %></td>
-            <td class="d-none d-md-table-cell"><%= car.car_type %></td>
-            <td class="d-none d-md-table-cell"><%= car.annee %></td>
-            <td class="d-none d-md-table-cell"><%= car.parking.name %></td>
-            <td class="price-rental d-none d-md-table-cell"><%= number_to_currency(car.price_rental, unit: 'F CFA ') %></td>
-            <td class="d-none d-md-table-cell">
+            <td><%= car.marque %></td>
+            <td><%= car.modele %></td>
+            <td><%= car.carburant %></td>
+            <td><%= car.car_type %></td>
+            <td><%= car.annee %></td>
+            <td><%= car.parking.name %></td>
+            <td class="price-rental"><%= number_to_currency(car.price_rental, unit: 'F CFA ') %></td>
+            <td>
               <h5 class="card-title ">
                 <% if car.disponible %>
                   <span style="color: green; font-weight: bold;">Disponible</span>
@@ -75,16 +73,12 @@
                 <% end %>
               </h5>
             </td>
-            <td>
-              <div class="btn-group">
-                <% if current_user.admin? %>
-                  <%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %>
-                <% else %>
-                  <%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %>
-                  <%= link_to 'Back', root_path, class:"btn btn-outline-dark" %>
-                <% end %>
-              </div>
-            </td>
+            <% if current_user.admin? %>              
+              <td><%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %></td>
+            <% else %>
+              <td><%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %></td>
+              <td><%= link_to 'Back', root_path, class:"btn btn-outline-dark" %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
