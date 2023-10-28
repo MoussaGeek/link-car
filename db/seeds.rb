@@ -67,6 +67,14 @@ ActiveRecord::Base.transaction do
       parking: Parking.first,      
       telephone: 12345678 + n 
     )
+    chauffeur.photo_permis.attach(
+      io: File.open(Rails.root.join('public', 'images', "permis.jpg")),
+      filename: "permis.jpg"
+    )
+    chauffeur.photo_carte.attach(
+      io: File.open(Rails.root.join('public', 'images', "carte.jpg")),
+      filename: "carte.jpg"
+    )
   end
 
   5.times do |n|
