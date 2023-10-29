@@ -1,13 +1,13 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_car, only: %i[show edit update destroy]
+  before_action :set_car, only: [:show, :edit, :update, :destroy]
   before_action :only_admin, except: [:index, :show]
 
   def index
     @cars = Car.page(params[:page])
   
     if params[:numero_matricule].present?
-      @cars = @cars.where("numero_matricule LIKE ?", "%#{params[:numero_matricule]}%")
+      @cars = @cars.where("numero_matricule ILIKE ?", "%#{params[:numero_matricule]}%")
     end
   
     if params[:parking].present?
@@ -15,11 +15,11 @@ class CarsController < ApplicationController
     end
   
     if params[:modele].present?
-      @cars = @cars.where("modele LIKE ?", "%#{params[:modele]}%")
+      @cars = @cars.where("modele ILIKE ?", "%#{params[:modele]}%")
     end
   
     if params[:car_type].present?
-      @cars = @cars.where("car_type LIKE ?", "%#{params[:car_type]}%")
+      @cars = @cars.where("car_type ILIKE ?", "%#{params[:car_type]}%")
     end
   end
 
@@ -62,7 +62,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car.destroy
-    flash[:notice] = 'La voiture a été supprimée avec succès.' # Corrected spelling
+    flash[:notice] = 'La voiture a été supprimée avec succès.'
     redirect_to cars_url
   end
 

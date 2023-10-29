@@ -24,7 +24,7 @@
                   <div class="text-center">
                      <strong>Photo du Permis:</strong>
                      <% if @chauffeur.photo_permis.attached? %>
-                        <%= image_tag @chauffeur.photo_permis.variant(resize_to_fill: [250, 150]) %>
+                        <%= image_tag @chauffeur.photo_permis.variant(resize_to_fill: [250, 150]), class: "img-fluid" %>
                      <% else %>
                         <p>Pas de photo du permis disponible.</p>
                      <% end %>
@@ -32,7 +32,7 @@
                   <div class="text-center">
                      <strong>Photo de la Carte:</strong>
                      <% if @chauffeur.photo_carte.attached? %>
-                        <%= image_tag @chauffeur.photo_carte.variant(resize_to_fill: [250, 150]) %>
+                        <%= image_tag @chauffeur.photo_carte.variant(resize_to_fill: [250, 150]), class: "img-fluid" %>
                      <% else %>
                         <p>Pas de photo de la carte disponible.</p>
                      <% end %>

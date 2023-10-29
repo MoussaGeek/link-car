@@ -3,9 +3,9 @@
     <% if flash[:notice] %>
       <div class="alert alert-success alert-dismissible show fade">
         <%= flash[:notice] %>
-          <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-          </button>
+        <button type="button" class="close" data-dismiss="alert">
+          <span>&times;</span>
+        </button>
       </div>
     <% end %>
   </div>
@@ -26,7 +26,7 @@
         <%= text_field_tag :modele, params[:modele], placeholder: "Modèle", class: "form-control" %>
       </div>
       <div class="col-md-3">
-      <%= text_field_tag :car_type, params[:car_type], placeholder: "Type de Voiture", class: "form-control" %>
+        <%= text_field_tag :car_type, params[:car_type], placeholder: "Type de Voiture", class: "form-control" %>
       </div>
       <div class="col-md-3 mt-2">
         <%= submit_tag "Rechercher", class: "btn btn-primary" %>
@@ -77,7 +77,7 @@
               <td><%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %></td>
             <% else %>
               <td><%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %></td>
-              <td><%= link_to 'Back', root_path, class:"btn btn-outline-dark" %></td>
+              <td><%= link_to 'Back', root_path, class: "btn btn-outline-dark" %></td>
             <% end %>
           </tr>
         <% end %>
