@@ -41,7 +41,8 @@ ActiveRecord::Base.transaction do
       },
     ]
   )
-  
+
+  parkings = []
   5.times do |n|
     name = Faker::Company.name
     name_gerant = Faker::Name.name
@@ -49,8 +50,8 @@ ActiveRecord::Base.transaction do
     email = Faker::Internet.email
     latitude = Faker::Address.latitude
     longitude = Faker::Address.longitude
-  
-    Parking.create(
+
+    parking = Parking.create(
       name: name,
       name_gerant: name_gerant,
       city: city,
@@ -58,55 +59,62 @@ ActiveRecord::Base.transaction do
       latitude: latitude,
       longitude: longitude
     )
+    parkings << parking
   end
 
-  5.times do |n|
-    Chauffeur.create(
-      name: "Chauffeur #{n + 1}", 
-      quartier: "Quartier #{n + 1}", 
-      parking: Parking.first,      
-      telephone: 12345678 + n 
-    )
-    chauffeur.photo_permis.attach(
-      io: File.open(Rails.root.join('public', 'images', "permis.jpg")),
-      filename: "permis.jpg"
-    )
-    chauffeur.photo_carte.attach(
-      io: File.open(Rails.root.join('public', 'images', "carte.jpg")),
-      filename: "carte.jpg"
-    )
-  end
-
-  5.times do |n|
-    car = Car.create(
-      numero_matricule: "ABCD#{n + 1}",
-      marque: "Marque #{n + 1}",
-      modele: "Modèle #{n + 1}",
-      car_type: "Type #{n + 1}",
-      annee: 2022 + n,
-      price_rental: 2000 + n * 100,
-      carburant: "Essence",
-      disponible: true,
-      parking: Parking.first 
-    )
+  parkings.each do |parking|
+    unique_telephone_counter = 12345678 + parkings.index(parking) * 10
   
-    car.photo.attach(
-      io: File.open(Rails.root.join('public', 'images', "photo#{n + 1}.jpg")),
-      filename: "photo#{n + 1}.jpg"
-    )
-
-   rental = Rental.create(
-      date: Date.today + n.days,
-      time: Time.now + n.hours,
-      duration: 4 + n,
-      destination: "Destination #{n + 1}",
-      user: User.first,
-      car: car,
-      chauffeur: Chauffeur.first
-    )
-
-    car.update(disponible: false)
-
+    5.times do |n|
+      chauffeur = Chauffeur.create(
+        name: "Chauffeur #{n + 1}",
+        quartier: "Quartier #{n + 1}",
+        parking: parking,
+        telephone: unique_telephone_counter + n
+      )
+      chauffeur.photo_permis.attach(
+        io: File.open(Rails.root.join('public', 'images', 'permis.jpg')),
+        filename: 'permis.jpg'
+      )
+      chauffeur.photo_carte.attach(
+        io: File.open(Rails.root.join('public', 'images', 'carte.jpg')),
+        filename: 'carte.jpg'
+      )
+    end
   end
 
+  parkings.each do |parking|
+    unique_matricule_counter = parkings.index(parking) * 10
+  
+    5.times do |n|
+      car = Car.create(
+        numero_matricule: "ABCD#{unique_matricule_counter + n + 1}",
+        marque: "Marque #{n + 1}",
+        modele: "Modèle #{n + 1}",
+        car_type: "Type #{n + 1}",
+        annee: 2022 + n,
+        price_rental: 2000 + n * 100,
+        carburant: "Essence",
+        disponible: true,
+        parking: parking
+      )
+  
+      car.photo.attach(
+        io: File.open(Rails.root.join('public', 'images', "photo#{n + 1}.jpg")),
+        filename: "photo#{n + 1}.jpg"
+      )
+  
+      rental = Rental.create(
+        date: Date.today + n.days,
+        time: Time.now + n.hours,
+        duration: 4 + n,
+        destination: "Destination #{n + 1}",
+        user: User.first,
+        car: car,
+        chauffeur: parking.chauffeurs.first
+      )
+  
+      car.update(disponible: false)
+    end
+  end
 end

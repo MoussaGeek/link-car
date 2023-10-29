@@ -35,9 +35,7 @@
                   <ul class="navbar-nav ml-auto">
                     <% if user_signed_in? %>
                     <% if current_user.admin? %>
-                      <li class="nav-item">
-                        <%= content_tag :a, "Panneau de contrôle", href: rails_admin_path, class: "nav-link" %>
-                      </li>
+                      
                       <li class="nav-item">
                         <%= content_tag :a, "Parkings", href: parkings_path, class: "nav-link" %>
                       </li>
