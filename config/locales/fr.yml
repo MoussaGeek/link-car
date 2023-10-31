@@ -36,7 +36,7 @@ fr:
       rental:
         date: Date
         time: Heure
-        duration: Nombre du jour
+        duration: Nombre de jour
         destination: Lieu
         user_id: Client
         car_id: Numéro matricule du voiture réserver

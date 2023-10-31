@@ -9,7 +9,7 @@
           <th>Date</th>
           <th>Heure</th>
           <th>Prix de la location</th>
-          <th>Durée</th>
+          <th>Nombre de jour</th>
           <th>Destination</th>
           <th>Numéro matricule du véhicule</th>
           <th>Nom du chauffeur</th>
@@ -22,10 +22,16 @@
             <td><%= history.date %></td>
             <td><%= history.time %></td>
             <td><%= number_to_currency(history.price, unit: ' F CFA ') %></td>
-            <td><%= pluralize(history.duration, 'jour') %></td>
+            <td><%= pluralize(history.duration, "jour", plural: "jours") %></td>
             <td><%= history.destination %></td>
             <td><%= history.car_matricule %></td>
-            <td><%= history.chauffeur %></td>
+            <td>
+              <% if history.chauffeur.present? %>
+              <%= history.chauffeur %>
+              <% else %>
+                <span style="color: blue;">Pas de chauffeur</span>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

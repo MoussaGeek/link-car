@@ -38,6 +38,12 @@
                 <%= f.label :city %>
                 <%= f.text_field :city %>
                 <br>
+                <%= f.label :latitude %>
+                <%= f.number_field :latitude, step: "0.000001", min: "-90", max: "90" %>
+                <br>
+                <%= f.label :longitude %>
+                <%= f.number_field :longitude, step: "0.000001", min: "-180", max: "180" %>
+                <br>
                 
                 <%= f.submit "Modifier", class: "btn btn-gray" %>
             <% end %>

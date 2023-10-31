@@ -11,7 +11,11 @@
   </div>
 
   <div class="text-center pt-4">
-    <h1>Liste des voitures</h1>
+    <div class="total-cars-box">
+      <h1>Liste des voitures</h1>
+      <div class="total-cars total-cars-blue"><%= @total_cars %></div>
+      <div class="total-cars total-cars-green"><%= @total_cars_available %></div>
+    </div>
   </div>
 
   <%= form_tag(cars_path, method: :get, class: "my-3") do %>
@@ -39,12 +43,12 @@
       <thead>
         <tr>
           <th>Photo</th>
-          <th>Numero matricule</th>
+          <th>Numéro matricule</th>
           <th>Marque</th>
           <th>Modele</th>
           <th>Carburant</th>
           <th>Car type</th>
-          <th>Annee</th>
+          <th>Année</th>
           <th>Parking</th>
           <th>Price rental</th>
           <th>Disponibilité</th>

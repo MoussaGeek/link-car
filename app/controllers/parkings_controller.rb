@@ -4,6 +4,7 @@ class ParkingsController < ApplicationController
   before_action :only_admin, except: [:index, :show]
 
   def index
+    @parkings_with_car_counts = Parking.joins(:cars).group('parkings.id').select('parkings.*, count(cars.id) as car_count')
     @parkings = Parking.page(params[:page])
   end
 
@@ -42,17 +43,11 @@ class ParkingsController < ApplicationController
 
   def destroy
     @parking = Parking.find(params[:id])
-    
-    # Supprimer toutes les locations liées aux voitures de ce parking
     cars = @parking.cars
     cars.each do |car|
       car.rentals.destroy_all
     end
-  
-    # Supprimer toutes les voitures du parking
     @parking.cars.destroy_all
-    
-    # Supprimer le parking lui-même
     @parking.destroy
   
     redirect_to parkings_url, notice: "Le parking a été supprimé avec succès."
@@ -68,6 +63,8 @@ class ParkingsController < ApplicationController
     end
 
     def only_admin
-      redirect_to root_path unless current_user&.admin?
+      if current_user.nil? || !current_user.admin?
+        redirect_to root_path
+      end
     end
 end

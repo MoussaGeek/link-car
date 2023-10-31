@@ -4,23 +4,27 @@ class CarsController < ApplicationController
   before_action :only_admin, except: [:index, :show]
 
   def index
-    @cars = Car.page(params[:page])
-  
+    @cars = Car.all
+
     if params[:numero_matricule].present?
       @cars = @cars.where("numero_matricule ILIKE ?", "%#{params[:numero_matricule]}%")
     end
-  
+
     if params[:parking].present?
       @cars = @cars.where(parking_id: params[:parking])
     end
-  
+
     if params[:modele].present?
       @cars = @cars.where("modele ILIKE ?", "%#{params[:modele]}%")
     end
-  
+
     if params[:car_type].present?
       @cars = @cars.where("car_type ILIKE ?", "%#{params[:car_type]}%")
     end
+
+    @total_cars = @cars.count
+    @total_cars_available = @cars.where(disponible: true).count
+    @cars = @cars.page(params[:page])
   end
 
   def show

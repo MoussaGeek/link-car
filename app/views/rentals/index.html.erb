@@ -10,7 +10,12 @@
     <% end %>
   </div>
 
-  <div style="text-align: center; padding-top: 40px;"><h1>Liste des réservations</h1></div>
+  <div class="text-center pt-4" style="margin-bottom: 10px;">
+    <div class="total-rentals-box">
+      <h1>Liste des réservations</h1>
+      <div class="total-rentals total-rentals-blue"><%= @total_rentals %></div>
+    </div>
+  </div>
 
   <div class="table-responsive">
     <table class="table table-bordered">
@@ -20,7 +25,7 @@
           <th>Date</th>
           <th>Time</th>
           <th>Prix de Location</th>
-          <th>Durée</th>
+          <th>Nombre de jour</th>
           <th>Destination</th>
           <th>Car_Rental numero_matricule</th>
           <th>Chauffeur</th>
@@ -35,10 +40,16 @@
             <td><%= rental.format_date %></td>
             <td><%= rental.format_time %></td>
             <td class="price-rental"><%= number_to_currency(rental.car.price_rental, unit: ' F CFA ') %></td>
-            <td><%= pluralize(rental.duration, "jour") %></td>
+            <td><%= pluralize(rental.duration, "jour", plural: "jours") %></td>
             <td><%= rental.destination %></td>
             <td><%= rental.car.numero_matricule %></td>
-            <td><%= rental.chauffeur.name if rental.chauffeur %></td>
+            <td>
+              <% if rental.chauffeur.present? %>
+                <%= rental.chauffeur.name %>
+              <% else %>
+                <span style="color: blue;">Pas de chauffeur</span>
+              <% end %>
+            </td>
             <% if current_user.admin? %>
             <td><%= button_to 'Show', rental_path(rental), method: :get, class: "custom-button btn btn-dark" %></td>
             <td><%= button_to 'Modifier', edit_rental_path(rental), method: :get, class: "btn btn-gray" %></td>

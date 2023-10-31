@@ -12,14 +12,21 @@
    <div style="text-align: center; padding-top: 40px;"><h1>Liste des parkings</h1></div>
    <div class="container" >
       <div class="row">
-         <% @parkings.all.each do |parking| %>
+         <% @parkings_with_car_counts.each do |parking| %>
             <div class="col-12 my-3">
+    <div class="car-count-badge text-right">
+      Nombre de voitures: <%= parking.car_count %>
+    </div>
+
                <section class="card bg-light text-dark">
                   <div class="card-body">
                      <p class="d-flex justify-content-around">Nom: <%= parking.name %></p>
-                     <p class="d-flex justify-content-around">Nom du gerant: <%= parking.name_gerant %></p>
+                     <p class="d-flex justify-content-around">Nom du gérant: <%= parking.name_gerant %></p>
                      <p class="d-flex justify-content-around">Ville: <%= parking.city %></p>
                      <p class="d-flex justify-content-around">Email: <%= parking.email %></p>
+                     <p class="d-flex justify-content-around">
+                        Nombre de voitures: <%= parking.car_count %>
+                     </p>
                      <% if current_user.admin? %>
                         <span class="d-flex justify-content-around"> 
                            <%= button_to 'Modifier', edit_parking_path(parking), method: :get, class: "btn btn-gray" %>

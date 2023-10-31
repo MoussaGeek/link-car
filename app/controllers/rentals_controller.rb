@@ -5,6 +5,8 @@ class RentalsController < ApplicationController
 
   def index
     authorize! :index, :rental
+    @rentals = Rental.all
+    @total_rentals = @rentals.count
     @rentals = Rental.page(params[:page])
     @selected_chauffeur = Chauffeur.find_by(id: params[:chauffeur_id])
   end
@@ -27,15 +29,22 @@ class RentalsController < ApplicationController
     user_id = rental_params[:user_id]
     @rental = Rental.new(rental_params)
     @car = @rental.car
-    @car.update(disponible: false)
-
-    if @rental.save
-      @selected_chauffeur = Chauffeur.find_by(id: params[:rental][:chauffeur_id])
-      flash[:notice] = 'La reservation est fait avec succès.'
-      redirect_to @rental
-    else
-      @error_message = @rental.errors.full_messages.join(', ')
+  
+    if @rental.date < Time.current
+      flash[:alert] = "La date de location ne peut pas être antérieure à la date et à l'heure actuelles."
       render :new
+    else
+      @car.update(disponible: false)
+  
+      if @rental.save
+        @selected_chauffeur = Chauffeur.find_by(id: params[:rental][:chauffeur_id])
+        flash[:notice] = 'La réservation a été faite avec succès.'
+        redirect_to @rental
+      else
+        @error_message = @rental.errors.full_messages.join(', ')
+        @car.update(disponible: true)
+        render :new
+      end
     end
   end
 
