@@ -13,8 +13,8 @@
   <div class="text-center pt-4">
     <div class="total-cars-box">
       <h1>Liste des voitures</h1>
-      <div class="total-cars total-cars-blue"><%= @total_cars %></div>
-      <div class="total-cars total-cars-green"><%= @total_cars_available %></div>
+      <div id="total-cars" class="total-cars total-cars-blue clickable" data-url="<%= cars_path %>"><%= @total_cars %></div>
+      <div id="total-cars-available" class="total-cars total-cars-green clickable" data-url="<%= cars_path(disponibilite: 'disponible') %>"><%= @total_cars_available %></div>
     </div>
   </div>
 

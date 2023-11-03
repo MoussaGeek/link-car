@@ -19,7 +19,6 @@ class ChauffeursController < ApplicationController
 
   def create
     @chauffeur = Chauffeur.new(chauffeur_params)
-
     if @chauffeur.save
       flash[:notice] = "Le chauffeur a été créé avec succès."
       redirect_to @chauffeur
@@ -43,7 +42,6 @@ class ChauffeursController < ApplicationController
 
   def destroy
     @chauffeur.destroy
-
     respond_to do |format|
       format.html { redirect_to chauffeurs_url, notice: "Chauffeur was successfully destroyed." }
       format.json { head :no_content }

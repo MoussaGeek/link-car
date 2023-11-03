@@ -1,30 +1,28 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("jquery")
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the imagePath JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
+document.addEventListener("DOMContentLoaded", function() {
+  const totalCarsElement = document.getElementById("total-cars");
+  const totalCarsAvailableElement = document.getElementById("total-cars-available");
+
+  totalCarsElement.addEventListener("click", () => redirectTo(totalCarsElement));
+  totalCarsAvailableElement.addEventListener("click", () => redirectTo(totalCarsAvailableElement));
+
+  function redirectTo(element) {
+    const url = element.getAttribute("data-url");
+    window.location.href = url;
+  }
+});
 
 function initMap() {
-  // Check if the latitude and longitude elements exist
   const latitudeElement = document.getElementById('latitude');
   const longitudeElement = document.getElementById('longitude');
-  
+
   if (latitudeElement && longitudeElement) {
     const latitude = parseFloat(latitudeElement.value);
     const longitude = parseFloat(longitudeElement.value);
-
     const location = { lat: latitude, lng: longitude };
 
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -32,7 +30,7 @@ function initMap() {
       center: location,
     });
 
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: location,
       map: map,
       title: "Lieu du parking",
@@ -47,11 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var chauffeurSelect = document.getElementById('chauffeurSelect');
 
   showHideChauffeurCheckbox.addEventListener('change', function() {
-      if (this.checked) {
-          chauffeurSelect.style.display = 'block';
-      } else {
-          chauffeurSelect.style.display = 'none';
-      }
+    chauffeurSelect.style.display = this.checked ? 'block' : 'none';
   });
 
   var lastRefreshTime = localStorage.getItem('lastRefreshTime');
@@ -59,9 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var refreshInterval = 5000;
 
   if (!lastRefreshTime || currentTime - lastRefreshTime > refreshInterval) {
-      localStorage.setItem('lastRefreshTime', currentTime);
-      setTimeout(function() {
-          window.location.reload();
-      }, 100);
+    localStorage.setItem('lastRefreshTime', currentTime);
+    setTimeout(() => window.location.reload(), 100);
   }
-}); 
+});
