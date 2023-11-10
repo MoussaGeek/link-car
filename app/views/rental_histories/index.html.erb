@@ -19,8 +19,8 @@
         <% @rental_histories.each do |history| %>
           <tr>
             <td><%= history.name %></td>
-            <td><%= history.date %></td>
-            <td><%= history.time %></td>
+            <td><%= history.format_date %></td>
+            <td><%= history.format_time %></td>
             <td><%= number_to_currency(history.price, unit: ' F CFA ') %></td>
             <td><%= pluralize(history.duration, "jour", plural: "jours") %></td>
             <td><%= history.destination %></td>

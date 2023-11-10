@@ -4,6 +4,8 @@ class ChauffeursController < ApplicationController
   before_action :only_admin
 
   def index
+    @chauffeurs = Chauffeur.all
+    @total_chauffeurs = @chauffeurs.count
     @chauffeurs = Chauffeur.page(params[:page])
   end
 

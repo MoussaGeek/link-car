@@ -35,3 +35,25 @@ td {
 .text-div {
   margin-top: 70px;
 }
+
+.text-center {
+  .total-chauffeurs-box {
+    background-color: gray; /* Couleur de fond grise */
+    display: inline-block;
+    padding: 5px 10px; /* Espacement autour du carré de fond gris */
+    border-radius: 5px; /* Coins arrondis */
+  }
+
+  .total-chauffeurs {
+    margin-left: 10px; /* Espacement entre "Liste des voitures" et le nombre total */
+    font-size: 16px; /* Taille de police du nombre total */
+  }
+}
+
+.total-chauffeurs-blue {
+  background-color: blue; /* Couleur de fond bleu */
+  color: white; /* Couleur du texte en blanc pour contraster */
+  padding: 5px 10px; /* Espacement autour du carré de fond bleu */
+  border-radius: 5px; /* Coins arrondis */
+  display: inline-block; /* Pour que le carré s'adapte à son contenu */
+}

@@ -25,6 +25,12 @@
                 <%= f.label :Telephone %>
                 <%= f.number_field :telephone %>
                 <br>
+                <%= f.label :photo_permis %>
+                <%= f.file_field :photo_permis %>
+                <br>
+                <%= f.label :photo_carte %>
+                <%= f.file_field :photo_carte %>
+                <br>
                 
                 <%= f.submit "Modifier", class: "btn btn-gray" %>
             <% end %>

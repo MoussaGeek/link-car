@@ -11,6 +11,14 @@ ActiveRecord::Base.transaction do
   Car.destroy_all
   Chauffeur.destroy_all
   Rental.destroy_all
+  RentalHistory.destroy_all
+
+  ActiveRecord::Base.connection.reset_pk_sequence!('parkings')
+  ActiveRecord::Base.connection.reset_pk_sequence!('cars')
+  ActiveRecord::Base.connection.reset_pk_sequence!('chauffeurs')
+  ActiveRecord::Base.connection.reset_pk_sequence!('rentals')
+  ActiveStorage::Attachment.all.each(&:purge)
+  ActiveStorage::Blob.all.each(&:delete_all)
 
   5.times do |n|
     User.create!(
@@ -107,7 +115,7 @@ ActiveRecord::Base.transaction do
       rental = Rental.create(
         date: Date.today + n.days,
         time: Time.now + n.hours,
-        duration: 4 + n,
+        duration: 1 + n,
         destination: "Destination #{n + 1}",
         user: User.first,
         car: car,

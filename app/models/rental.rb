@@ -7,16 +7,14 @@ class Rental < ApplicationRecord
   validates :date, :time, :duration, :destination, presence: true
   validates :duration, :destination, length: {maximum: 250}
 
+  scope :active, -> { where("date + time + duration * interval '1 day' > ?", Time.current) }
+
   def format_date
     date.strftime("%m/%d/%Y")
   end
 
   def format_time
       time.strftime('%H:%M')
-  end
-  
-  def appointment_time
-      (time - 1800).strftime('%H:%M')
   end
 
   def log_rental
@@ -31,6 +29,11 @@ class Rental < ApplicationRecord
       chauffeur: chauffeur&.name,
       user: user
     )
+  end
+
+  def expired?
+    end_datetime = date.to_datetime + time.seconds_since_midnight.seconds + duration.days
+    end_datetime < Time.current
   end
 
 end
