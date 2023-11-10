@@ -18,7 +18,7 @@ ActiveRecord::Base.transaction do
   ActiveRecord::Base.connection.reset_pk_sequence!('chauffeurs')
   ActiveRecord::Base.connection.reset_pk_sequence!('rentals')
   ActiveStorage::Attachment.all.each(&:purge)
-  ActiveStorage::Blob.all.each(&:delete_all)
+  ActiveStorage::Blob.all.each(&:destroy)
 
   5.times do |n|
     User.create!(
