@@ -13,13 +13,6 @@ ActiveRecord::Base.transaction do
   Rental.destroy_all
   RentalHistory.destroy_all
 
-  ActiveRecord::Base.connection.reset_pk_sequence!('parkings')
-  ActiveRecord::Base.connection.reset_pk_sequence!('cars')
-  ActiveRecord::Base.connection.reset_pk_sequence!('chauffeurs')
-  ActiveRecord::Base.connection.reset_pk_sequence!('rentals')
-  ActiveStorage::Attachment.all.each(&:purge)
-  ActiveStorage::Blob.all.each(&:destroy)
-
   5.times do |n|
     User.create!(
       name: "User#{n+1}",
