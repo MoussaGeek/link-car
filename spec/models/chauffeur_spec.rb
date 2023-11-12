@@ -13,25 +13,25 @@ RSpec.describe Chauffeur, type: :model do
     end
     context 'If telephone is empty' do
       it 'Validation fails' do
-        chauffeur = Chauffeur.create(name: "John Doe", quartier: "Kondjili", parking_id: @parking.id, telephone: "")
+        chauffeur = Chauffeur.create(name: "John", quartier: "Kondjili", parking_id: @parking.id, telephone: "")
         expect(chauffeur).to be_invalid
       end
     end
     context 'If quartier is empty' do
       it 'Validation fails' do
-        chauffeur = Chauffeur.create(name: "John Doe", telephone: "12345678", quartier: "", parking_id: @parking.id)
+        chauffeur = Chauffeur.create(name: "John", telephone: "12345678", quartier: "", parking_id: @parking.id)
         expect(chauffeur).to be_invalid
       end
     end
     context 'If parking is empty' do
       it 'Validation fails' do
-        chauffeur = Chauffeur.create(name: "John Doe", telephone: "12345678", quartier: "Kondjili", parking_id: "")
+        chauffeur = Chauffeur.create(name: "John", telephone: "12345678", quartier: "Kondjili", parking_id: "")
         expect(chauffeur).to be_invalid
       end
     end
     context 'If all contain value' do
       it 'Validation succeds' do
-        chauffeur = Chauffeur.create(name: "John Doe", telephone: "12345678", quartier: "Kondjili", parking_id: @parking.id)
+        chauffeur = Chauffeur.create(name: "John", telephone: "12345678", quartier: "Kondjili", parking_id: @parking.id)
         expect(chauffeur).to be_valid
       end
     end

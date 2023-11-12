@@ -48,7 +48,7 @@ RSpec.describe "Parkings", type: :system do
         click_on 'Se connecter'
         sleep(3)
         visit parking_path(@parking.id)
-        click_on 'Modifier le parking'
+        click_on 'Modifier parking'
         fill_in 'Nom du parking', with: 'Panne'
         fill_in 'Nom du gérant', with: 'Kaka'
         fill_in 'Email', with: 'look@gmail.com'

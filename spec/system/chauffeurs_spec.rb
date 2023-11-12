@@ -27,12 +27,12 @@ RSpec.describe "Chauffeurs", type: :system do
         click_on 'Se connecter'
         click_on 'Chauffeurs'
         click_on 'Créer un chauffeur'
-        fill_in 'Nom du chauffeur', with: 'Madou'
-        fill_in 'Nom du gérant', with: 'Fily'
-        fill_in 'Ville', with: 'Kayes'
-        fill_in 'Email', with: 'ceedrik@gmail.com'
-        fill_in 'Latitude', with: '14.666'
-        fill_in 'Longitude', with: '-6.4555'
+        fill_in 'Nom du chauffeur', with: 'John'
+        fill_in 'Quartier', with: 'Kondjili'
+        fill_in 'Télephone', with: '12345678'
+        select(@parking.name, from: 'Nom du parking')
+        attach_file 'Permis de conduire', Rails.root.join('spec', 'fixtures', 'permis.jpg')
+        attach_file 'Carte d\'identité', Rails.root.join('spec', 'fixtures', 'carte.jpg')
         click_on 'Créer'
         expect(page).to have_content 'Le parking a été créer avec succès.'
       end
@@ -40,6 +40,7 @@ RSpec.describe "Chauffeurs", type: :system do
     context 'When an admin tries to edit a parking' do
       before do
         @parking = FactoryBot.create(:parking)
+        @chauffeur = FactoryBot.create(:chauffeur)
       end
       it 'will work' do
         visit new_user_session_path
@@ -47,21 +48,22 @@ RSpec.describe "Chauffeurs", type: :system do
         fill_in 'Mot de passe', with: @admin.password
         click_on 'Se connecter'
         sleep(3)
-        visit parking_path(@parking.id)
+        visit chauffeur_path(@chauffeur.id)
+        click_on 'Modifier le chauffeur'
+        fill_in 'Nom du chauffeur', with: 'Poulo'
+        fill_in 'Quartier', with: 'Koulikoro'
+        fill_in 'Télephone', with: '12345679'
+        select(@parking.name, from: 'Nom du parking')
+        attach_file 'Permis de conduire', Rails.root.join('spec', 'fixtures', 'permis.jpg')
+        attach_file 'Carte d\'identité', Rails.root.join('spec', 'fixtures', 'carte.jpg')
         click_on 'Modifier'
-        fill_in 'Nom du parking', with: 'Panne'
-        fill_in 'Nom du gérant', with: 'Kaka'
-        fill_in 'Ville', with: 'Koulikoro'
-        fill_in 'Email', with: 'look@gmail.com'
-        fill_in 'Latitude', with: '12.86273'
-        fill_in 'Longitude', with: '-7.55985'
-        click_on 'Modifier le parking'
         expect(page).to have_content 'Le parking a été modifier avec succès.'
       end
     end
-    context 'When an admin tries to destroy a parking' do
+    context 'When an admin tries to destroy a chauffeur' do
       before do
         @parking = FactoryBot.create(:parking)
+        @chauffeur = FactoryBot.create(:chauffeur)
       end
       it 'will work' do
         visit new_user_session_path
@@ -69,10 +71,10 @@ RSpec.describe "Chauffeurs", type: :system do
         fill_in 'Mot de passe', with: @admin.password
         click_on 'Se connecter'
         sleep(3)
-        visit parking_path(@parking.id)
+        visit chauffeur_path(@chauffeur.id)
         click_on 'Supprimer'
         page.accept_confirm
-        expect(page).to have_content 'Le parking a été supprimer avec succès.'
+        expect(page).to have_content 'Le chauffeur a été supprimer avec succès.'
       end
     end
   end

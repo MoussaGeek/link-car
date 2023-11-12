@@ -30,7 +30,6 @@
               <% if current_user.admin? %>
               <span class="d-flex justify-content-around">              
                 <%= button_to 'Show', chauffeur_path(chauffeur), method: :get, class: "custom-button btn btn-dark" %>
-                <%= button_to 'Supprimer', chauffeur, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class: "btn btn-danger custom-button" %>
               </span>
               <% else %>
               <span class="d-flex justify-content-around">

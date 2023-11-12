@@ -66,14 +66,15 @@
                   </div>
                 </div>
               </div>
-              <% if current_user.admin? %> 
-                  <div class="text-center">
-                    <%= link_to 'Modifier le parking', edit_parking_path, class: "btn btn-gray" %>
-                  </div>
-                <% else %>
-                  <div class="text-center">
-                    <%= link_to 'Back', parkings_path, class:"btn btn-outline-dark" %>
-                  </div>              
+              <% if current_user.admin? %>
+                <span class="d-flex justify-content-around">
+                  <%= link_to 'Modifier parking', edit_parking_path, class: "btn btn-gray" %>
+                  <%= button_to 'Supprimer', @parking, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class: "btn btn-danger custom-button" %>
+                </span>
+              <% else %>
+                <div class="text-center">
+                  <%= link_to 'Back', parkings_path, class:"btn btn-outline-dark" %>
+                </div>              
               <% end %>
             </div>
           </div>

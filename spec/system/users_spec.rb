@@ -5,7 +5,7 @@ RSpec.describe "Users", type: :system do
     context 'when a user create an account' do
       it 'redirect to root path' do
         visit new_user_registration_path
-        fill_in 'Nom', with: 'Cedrik'
+        fill_in 'Nom', with: 'cedrik'
         fill_in 'Email', with: 'ceedrik@gmail.com'
         fill_in 'Mot de passe', with: '123456'
         fill_in 'Confirmation mot de passe', with: '123456'

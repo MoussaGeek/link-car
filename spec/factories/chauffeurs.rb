@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :chauffeur do
-    name { 'John Doe' }
+    name { 'John' }
     quartier { 'Kondjili' }
     association :parking
     telephone { '12345678' }
 
     transient do
-      image_path1 { Rails.root.join('spec', 'fixtures', 'test_image1.jpg') }
-      image_path2 { Rails.root.join('spec', 'fixtures', 'test_image2.jpg') }
+      image_path1 { Rails.root.join('spec', 'fixtures', 'permis.jpg') }
+      image_path2 { Rails.root.join('spec', 'fixtures', 'carte.jpg') }
     end
 
     after(:build) do |chauffeur, evaluator|

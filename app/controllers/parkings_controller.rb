@@ -49,8 +49,7 @@ class ParkingsController < ApplicationController
     end
     @parking.cars.destroy_all
     @parking.destroy
-  
-    redirect_to parkings_url, notice: "Le parking a été supprimé avec succès."
+    redirect_to parkings_url, notice: "Le parking a été supprimer avec succès."
   end
 
   private

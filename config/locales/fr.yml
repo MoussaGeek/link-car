@@ -22,7 +22,9 @@ fr:
         name: Nom du chauffeur
         quartier: Quartier
         telephone: Télephone
-        parking_id: Parking Identifiant
+        parking_id: Nom du parking
+        photo_permis: Permis de conduire
+        photo_carte: Carte d'identité
       car:
         numero_matricule: Numéro matricule
         marque: Marque

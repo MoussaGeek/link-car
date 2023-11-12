@@ -27,18 +27,10 @@
                      <p class="d-flex justify-content-around">
                         Nombre de voitures: <%= parking.car_count %>
                      </p>
-                     <% if current_user.admin? %>
-                        <span class="d-flex justify-content-around"> 
-                           <%= button_to 'Modifier', edit_parking_path(parking), method: :get, class: "btn btn-gray" %>
-                           <%= button_to 'Show', parking_path(parking), method: :get, class: "custom-button btn btn-dark" %>
-                           <%= button_to 'Supprimer', parking, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class: "btn btn-danger custom-button" %>              
-                        </span>
-                     <% else %>
-                        <span class="d-flex justify-content-around">
-                           <%= button_to 'Show', parking_path(parking), method: :get, class: "custom-button btn btn-dark" %>
-                           <%= link_to 'Back', root_path, class:"btn btn-outline-dark" %>              
-                        </span>
-                     <% end %>
+                     <span class="d-flex justify-content-around">
+                        <%= button_to 'Show', parking_path(parking), method: :get, class: "custom-button btn btn-dark" %>
+                        <%= link_to 'Back', root_path, class:"btn btn-outline-dark" %>              
+                     </span>
                   </div>
                </section>
             </div>

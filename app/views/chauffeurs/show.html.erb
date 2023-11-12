@@ -39,9 +39,10 @@
                   </div>
                </div>
             </div>
-            <div class="d-flex justify-content-center pb-3">
+            <span class="d-flex justify-content-around">
                <%= link_to 'Modifier chauffeur', edit_chauffeur_path, class: "btn btn-gray" %>
-            </div>
+               <%= button_to 'Supprimer', @chauffeur, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class: "btn btn-danger custom-button" %>
+            </span>
          </div>
       </div>
    </div>

@@ -78,11 +78,11 @@ RSpec.describe "Cars", type: :system do
         click_on 'Voitures'
         click_on 'Show'
         click_on 'Rental'
-        fill_in 'Date', with: 'V8'
-        fill_in 'Time', with: '25000'
+        fill_in 'Date', with: '2023-11-11'
+        fill_in 'Time', with: '15:00:00'
         fill_in 'Duration', with: '1'
         select(@chauffeur.name, from: 'Nom du chauffeur')
-        click_on 'Submit'
+        click_on 'Reserver'
         expect(page).to have_content 'La voiture a été réserver avec succès.'
       end
     end
