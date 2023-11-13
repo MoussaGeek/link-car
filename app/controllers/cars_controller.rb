@@ -41,11 +41,11 @@ class CarsController < ApplicationController
 
   def edit
   end
-
+  
   def create
     @car = Car.new(car_params)
     if @car.save
-      flash[:notice] = "La voiture a été créée avec succès."
+      flash[:notice] = 'La voiture a été créé avec succès.'
       redirect_to @car
     else
       @error_message = @car.errors.full_messages.join(', ')
@@ -71,7 +71,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car.destroy
-    flash[:notice] = 'La voiture a été supprimée avec succès.'
+    flash[:notice] = 'La voiture a été supprimer avec succès.'
     redirect_to cars_url
   end
 

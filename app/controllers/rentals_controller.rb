@@ -60,7 +60,7 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id]) 
     respond_to do |format|
       if @rental.update(rental_params)
-        format.html { redirect_to rental_url(@rental), notice: "Rental was successfully updated." }
+        format.html { redirect_to rental_url(@rental), notice: "La réservation a été modifier avec succès." }
         format.json { render :show, status: :ok, location: @rental }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -75,7 +75,7 @@ class RentalsController < ApplicationController
     @car.update(disponible: true)
 
     respond_to do |format|
-      format.html { redirect_to rentals_url, notice: "Rental was successfully destroyed." }
+      format.html { redirect_to rentals_url, notice: "La réservation a été supprimer avec succès." }
       format.json { head :no_content }
     end
   end

@@ -22,17 +22,18 @@ fr:
         name: Nom du chauffeur
         quartier: Quartier
         telephone: Télephone
-        parking_id: Nom du parking
+        parking_id: Nom du Parking
         photo_permis: Permis de conduire
         photo_carte: Carte d'identité
       car:
         numero_matricule: Numéro matricule
         marque: Marque
-        price_rental: Prix de Location
+        price_rental: Prix de location
         modele: Modèle
         annee: Année de sorti
         carburant: Carburant
         car_type: Type de voiture
+        parking_id: Nom du Parking
         photo: Photo
         disponible: Disponibilité
       rental:

@@ -33,7 +33,7 @@ class ChauffeursController < ApplicationController
   def update
     respond_to do |format|
       if @chauffeur.update(chauffeur_params)
-        format.html { redirect_to chauffeur_url(@chauffeur), notice: "Chauffeur was successfully updated." }
+        format.html { redirect_to chauffeur_url(@chauffeur), notice: "Le parking a été modifier avec succès." }
         format.json { render :show, status: :ok, location: @chauffeur }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -45,7 +45,7 @@ class ChauffeursController < ApplicationController
   def destroy
     @chauffeur.destroy
     respond_to do |format|
-      format.html { redirect_to chauffeurs_url, notice: "Chauffeur was successfully destroyed." }
+      format.html { redirect_to chauffeurs_url, notice: "Le chauffeur a été supprimer avec succès." }
       format.json { head :no_content }
     end
   end

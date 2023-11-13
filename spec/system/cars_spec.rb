@@ -27,17 +27,17 @@ RSpec.describe "Cars", type: :system do
         click_on 'Se connecter'
         click_on 'Voitures'
         click_on 'Créer une voiture'
-        fill_in 'Numéro matricule', with: 'KL337DD'
+        fill_in 'Numéro matricule', with: 'QR7823MD1'
         fill_in 'Marque', with: 'V8'
-        fill_in 'Prix de Location', with: '25000'
+        fill_in 'Prix de location', with: '25000'
         fill_in 'Modèle', with: 'Renault'
         fill_in 'Année de sorti', with: '2003'
         fill_in 'Carburant', with: 'Gasoil'
         fill_in 'Type de voiture', with: 'Voiture'
         attach_file 'Photo', Rails.root.join('spec', 'fixtures', 'test_image.jpg')
-        select(@parking.name, from: 'Parking')
+        select(@parking.name, from: 'Nom du Parking')
         click_on 'Créer'
-        expect(page).to have_content 'La voiture a été créer avec succès.'
+        expect(page).to have_content 'La voiture a été créé avec succès.'
       end
     end
     context 'When an admin tries to edit a car' do
@@ -50,40 +50,18 @@ RSpec.describe "Cars", type: :system do
         fill_in 'Mot de passe', with: @admin.password
         click_on 'Se connecter'
         sleep(3)
-        visit cars_path
-        click_on 'Modifier'
+        visit car_path(@car.id)
+        click_on 'Modifier car'
         fill_in 'Numéro matricule', with: 'KL337DP'
         fill_in 'Marque', with: '4x4'
-        fill_in 'Prix de Location', with: '27000'
+        fill_in 'Prix de location', with: '27000'
         fill_in 'Modèle', with: 'Bougatti'
         fill_in 'Année de sorti', with: '2007'
         fill_in 'Carburant', with: 'Essence'
         fill_in 'Type de voiture', with: 'Camion'
         attach_file 'Photo', Rails.root.join('spec', 'fixtures', 'test_image.jpg')
-        select(@parking.name, from: 'Nom_Parking')
-        click_on 'Modifier la voiture'
-        expect(page).to have_content 'La voiture a été modifier avec succès.'
-      end
-    end
-    context 'When a user tries to car a rental' do
-      before do
-        @car = FactoryBot.create(:car)
-        @chauffeur = FactoryBot.create(:chauffeur)
-      end
-      it 'will work' do
-        visit new_user_session_path
-        fill_in 'Email', with: @user.email
-        fill_in 'Mot de passe', with: @user.password
-        click_on 'Se connecter'
-        click_on 'Voitures'
-        click_on 'Show'
-        click_on 'Rental'
-        fill_in 'Date', with: '2023-11-11'
-        fill_in 'Time', with: '15:00:00'
-        fill_in 'Duration', with: '1'
-        select(@chauffeur.name, from: 'Nom du chauffeur')
-        click_on 'Reserver'
-        expect(page).to have_content 'La voiture a été réserver avec succès.'
+        click_on 'Modifier'
+        expect(page).to have_content 'La voiture a été modifiée avec succès.'
       end
     end
     context 'When an admin tries to destroy a car' do

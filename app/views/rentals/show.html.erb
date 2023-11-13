@@ -27,7 +27,14 @@
               <span style="color: blue;">Pas de chauffeur</span>
             <% end %>
             </p>
-            <div class="d-flex justify-content-center pb-3"><%= link_to 'Back', cars_path, class:"btn btn-outline-dark" %></div>
+            <% if current_user.admin? %>
+               <span class="d-flex justify-content-around" style="margin-bottom: 20px;">
+                  <%= link_to 'Modifier rental', edit_rental_path, class: "btn btn-gray" %>
+                  <%= button_to 'Supprimer', @rental, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class: "btn btn-danger custom-button" %>
+               </span>
+            <% else %>
+               <div class="d-flex justify-content-center pb-3" style="margin-bottom: 20px;"><%= link_to 'Back', cars_path, class:"btn btn-outline-dark" %></div>              
+            <% end %>
          </div>
       </div>
    </div>

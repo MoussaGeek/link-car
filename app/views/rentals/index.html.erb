@@ -52,8 +52,6 @@
             </td>
             <% if current_user.admin? %>
             <td><%= button_to 'Show', rental_path(rental), method: :get, class: "custom-button btn btn-dark" %></td>
-            <td><%= button_to 'Modifier', edit_rental_path(rental), method: :get, class: "btn btn-gray" %></td>
-            <td><%= button_to 'Supprimer', rental, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class: "btn btn-danger custom-button" %></td>
             <% else %>
             <td><%= link_to 'Back', cars_path, class:"btn btn-outline-dark" %></td>
             <% end %>

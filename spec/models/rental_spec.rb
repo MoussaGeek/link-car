@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Rental, type: :model do
   before do
-    @user = FactoryBot.create(:user)
     @car = FactoryBot.create(:car)
     @chauffeur = FactoryBot.create(:chauffeur)
   end

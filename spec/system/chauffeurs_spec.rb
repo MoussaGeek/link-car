@@ -30,14 +30,14 @@ RSpec.describe "Chauffeurs", type: :system do
         fill_in 'Nom du chauffeur', with: 'John'
         fill_in 'Quartier', with: 'Kondjili'
         fill_in 'Télephone', with: '12345678'
-        select(@parking.name, from: 'Nom du parking')
+        select(@parking.name, from: 'Nom du Parking')
         attach_file 'Permis de conduire', Rails.root.join('spec', 'fixtures', 'permis.jpg')
         attach_file 'Carte d\'identité', Rails.root.join('spec', 'fixtures', 'carte.jpg')
         click_on 'Créer'
-        expect(page).to have_content 'Le parking a été créer avec succès.'
+        expect(page).to have_content 'Le chauffeur a été créé avec succès.'
       end
     end
-    context 'When an admin tries to edit a parking' do
+    context 'When an admin tries to edit a chauffeur' do
       before do
         @parking = FactoryBot.create(:parking)
         @chauffeur = FactoryBot.create(:chauffeur)
@@ -49,11 +49,10 @@ RSpec.describe "Chauffeurs", type: :system do
         click_on 'Se connecter'
         sleep(3)
         visit chauffeur_path(@chauffeur.id)
-        click_on 'Modifier le chauffeur'
-        fill_in 'Nom du chauffeur', with: 'Poulo'
+        click_on 'Modifier chauffeur'
+        fill_in 'Nom du chauffeur', with: 'Jean'
         fill_in 'Quartier', with: 'Koulikoro'
         fill_in 'Télephone', with: '12345679'
-        select(@parking.name, from: 'Nom du parking')
         attach_file 'Permis de conduire', Rails.root.join('spec', 'fixtures', 'permis.jpg')
         attach_file 'Carte d\'identité', Rails.root.join('spec', 'fixtures', 'carte.jpg')
         click_on 'Modifier'

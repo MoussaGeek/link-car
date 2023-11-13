@@ -13,16 +13,16 @@
         <div class="col-11 col-sm-8 col-md-6">
             <h2 style="text-align: center; padding: 20px">Edit chauffeur</h2>
             <%= form_for(@chauffeur, url: chauffeur_path(@chauffeur), local: true, method: :patch) do |f| %>
-                <%= f.label :Name %>
+                <%= f.label :name %>
                 <%= f.text_field :name %>
                 <br>
-                <%= f.label :Quartier %>
+                <%= f.label :quartier %>
                 <%= f.text_field :quartier %>
                 <br>
-                <%= f.label :Parking %>
+                <%= f.label :parking_id %>
                 <%= f.collection_select :parking_id, Parking.all, :id, :name, { prompt: "Seclectionné le parking" } %>
                 <br>
-                <%= f.label :Telephone %>
+                <%= f.label :telephone %>
                 <%= f.number_field :telephone %>
                 <br>
                 <%= f.label :photo_permis %>

@@ -13,14 +13,14 @@
   <%= form_with(model: @car) do |form| %>
     <% if @car.errors.any? %>
       <div id="error_explanation">
-          <div class="alert alert-danger">
-              The form contains <%= pluralize(@car.errors.count, "error") %>.
-          </div>
-          <ul>
-            <% @car.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger">
+          The form contains <%= pluralize(@car.errors.count, "error") %>.
+        </div>
+        <ul>
+          <% @car.errors.full_messages.each do |message| %>
             <li><%= message %></li>
-            <% end %>
-          </ul>
+          <% end %>
+        </ul>
       </div>
     <% end %>
     <div class="card mb-3 my-3 mx-auto" style="max-width: 80%; padding: 10px">
