@@ -1,3 +1,32 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.btn-gray {
+    background-color: gray;
+    color: white;
+  }
+  .btn-gray:hover {
+      background-color: darkgray;
+  }
+  
+  .custom-button.btn-dark {
+    background-color: #007bff;
+    border-color: #007bff; 
+  }
+  
+  .custom-button.btn-dark:hover {
+    background-color: #b8d8ff; 
+    border-color: #b8d8ff; 
+  }
+  
+  .custom-button {
+    background-color: #cd727b;
+    border-color: #6b353a; 
+    color: #fff; 
+    transition: background-color 0.3s, border-color 0.3s;
+  
+    &:hover {
+      background-color: #ff0000;
+      border-color: #ff0000;
+    }
+  }

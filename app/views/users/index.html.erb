@@ -20,8 +20,8 @@
                      <p class="d-flex justify-content-around">Email: <%= user.email %></p>
                      <p class="d-flex justify-content-around">Administrateur: <%= user.admin? ? 'Oui' : 'Non' %></p>
                      <span class="d-flex justify-content-around"> 
-                        <%= button_to 'Modifier', edit_user_path(user), method: :get, class:"btn btn-outline-dark" %>
-                        <%= button_to 'Supprimer', user, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class:"btn btn-dark" %>              
+                        <%= button_to 'Modifier', edit_user_path(user), method: :get, class: "btn btn-gray" %>
+                        <%= button_to 'Supprimer', user, method: :delete, data: {confirm: "Êtes-vous sûr?" }, class: "btn btn-danger custom-button" %>              
                      </span>
                   </div>
                </section>
