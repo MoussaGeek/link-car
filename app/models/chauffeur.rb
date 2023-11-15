@@ -8,4 +8,9 @@ class Chauffeur < ApplicationRecord
   validates :name, :quartier, presence: true
   validates :telephone, presence: true, format: { with: /\A\d{8}\z/, message: "doit contenir exactement huit chiffres" }
   validates :name, :quartier, length: {maximum: 250}
+
+  def has_active_reservation?
+    Rental.where(chauffeur_id: id).active.exists?
+  end
+
 end

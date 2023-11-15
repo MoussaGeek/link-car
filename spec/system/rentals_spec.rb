@@ -27,12 +27,12 @@ RSpec.describe "Rentals", type: :system do
         fill_in 'Mot de passe', with: @user.password
         click_on 'Se connecter'
         visit car_path(@car)
-        click_on 'Rental'
+        click_on 'Réserver'
         fill_in 'Date', with: '2023-11-12'
         fill_in 'Heure', with: '15:00:00'
         fill_in 'Nombre de jour', with: '1'
         fill_in 'Lieu', with: 'Mahina'
-        click_on 'Réserver'
+        click_on 'Réserve'
         expect(page).to have_content 'La réservation a été faite avec succès.'
       end
     end
@@ -47,7 +47,7 @@ RSpec.describe "Rentals", type: :system do
         click_on 'Se connecter'
         sleep(2)
         visit car_path(@car)
-        click_on 'Rental'
+        click_on 'Réserver'
         click_on 'Annuler'
       end
     end

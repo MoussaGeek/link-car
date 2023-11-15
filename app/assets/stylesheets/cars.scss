@@ -1,8 +1,3 @@
-.car-image {
-  max-width: 100%; /* La largeur maximale est de 100% de la largeur du conteneur parent */
-  height: auto; /* La hauteur s'ajuste automatiquement pour maintenir les proportions de l'image */
-}
-
 .price-rental {
   color: blue;
 }
@@ -39,31 +34,31 @@
 
 .text-center {
   .total-cars-box {
-    background-color: gray; /* Couleur de fond grise */
+    background-color: gray;
     display: inline-block;
-    padding: 5px 10px; /* Espacement autour du carré de fond gris */
-    border-radius: 5px; /* Coins arrondis */
+    padding: 5px 10px;
+    border-radius: 5px;
   }
 
   .total-cars {
-    margin-left: 10px; /* Espacement entre "Liste des voitures" et le nombre total */
-    font-size: 16px; /* Taille de police du nombre total */
+    margin-left: 10px;
+    font-size: 16px;
   }
 }
 
 .total-cars-blue {
-  background-color: blue; /* Couleur de fond bleu */
-  color: white; /* Couleur du texte en blanc pour contraster */
-  padding: 5px 10px; /* Espacement autour du carré de fond bleu */
-  border-radius: 5px; /* Coins arrondis */
-  display: inline-block; /* Pour que le carré s'adapte à son contenu */
+  background-color: blue;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
 }
 
 .total-cars-green {
-  background-color: green; /* Couleur de fond verte */
-  color: white; /* Couleur du texte en blanc pour contraster */
-  padding: 5px 10px; /* Espacement autour du carré de fond vert */
-  border-radius: 5px; /* Coins arrondis */
-  display: inline-block; /* Pour que le carré s'adapte à son contenu */
-  margin-left: 10px; /* Espacement à gauche du carré vert */
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-left: 10px;
 }

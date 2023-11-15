@@ -11,7 +11,7 @@
     </div>
     <div class="d-flex justify-content-around row">
         <div class="col-11 col-sm-8 col-md-6">
-            <h2 style="text-align: center; padding: 20px">Edit chauffeur</h2>
+            <h2 style="text-align: center; padding: 20px">Modification d'un chauffeur</h2>
             <%= form_for(@chauffeur, url: chauffeur_path(@chauffeur), local: true, method: :patch) do |f| %>
                 <%= f.label :name %>
                 <%= f.text_field :name %>

@@ -3,20 +3,23 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbolinks:load", function() {
   const totalCarsElement = document.getElementById("total-cars");
   const totalCarsAvailableElement = document.getElementById("total-cars-available");
 
-  totalCarsElement.addEventListener("click", () => redirectTo(totalCarsElement));
-  totalCarsAvailableElement.addEventListener("click", () => redirectTo(totalCarsAvailableElement));
-
   function redirectTo(element) {
     const url = element.getAttribute("data-url");
-    window.location.href = url;
+    Turbolinks.visit(url);
   }
-});
 
-function initMap() {
+  if (totalCarsElement) {
+    totalCarsElement.addEventListener("click", () => redirectTo(totalCarsElement));
+  }
+
+  if (totalCarsAvailableElement) {
+    totalCarsAvailableElement.addEventListener("click", () => redirectTo(totalCarsAvailableElement));
+  }
+
   const latitudeElement = document.getElementById('latitude');
   const longitudeElement = document.getElementById('longitude');
 
@@ -36,24 +39,16 @@ function initMap() {
       title: "Lieu du parking",
     });
   }
-}
 
-window.initMap = initMap;
-
-document.addEventListener('DOMContentLoaded', function() {
   var showHideChauffeurCheckbox = document.getElementById('showHideChauffeur');
   var chauffeurSelect = document.getElementById('chauffeurSelect');
 
-  showHideChauffeurCheckbox.addEventListener('change', function() {
-    chauffeurSelect.style.display = this.checked ? 'block' : 'none';
-  });
-
-  var lastRefreshTime = localStorage.getItem('lastRefreshTime');
-  var currentTime = new Date().getTime();
-  var refreshInterval = 5000;
-
-  if (!lastRefreshTime || currentTime - lastRefreshTime > refreshInterval) {
-    localStorage.setItem('lastRefreshTime', currentTime);
-    setTimeout(() => window.location.reload(), 100);
+  function toggleChauffeurSelect() {
+    chauffeurSelect.style.display = showHideChauffeurCheckbox.checked ? 'block' : 'none';
   }
+
+  // Initialisation de l'état de la checkbox
+  toggleChauffeurSelect();
+
+  showHideChauffeurCheckbox.addEventListener('change', toggleChauffeurSelect);
 });

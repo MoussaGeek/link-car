@@ -51,9 +51,9 @@
               <% end %>
             </td>
             <% if current_user.admin? %>
-            <td><%= button_to 'Show', rental_path(rental), method: :get, class: "custom-button btn btn-dark" %></td>
+            <td><%= button_to 'Détail', rental_path(rental), method: :get, class: "custom-button btn btn-dark" %></td>
             <% else %>
-            <td><%= link_to 'Back', cars_path, class:"btn btn-outline-dark" %></td>
+            <td><%= link_to 'Retour', cars_path, class:"btn btn-outline-dark" %></td>
             <% end %>
           </tr>
         <% end %>

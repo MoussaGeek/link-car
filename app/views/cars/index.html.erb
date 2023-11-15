@@ -77,12 +77,7 @@
                 <% end %>
               </h5>
             </td>
-            <% if current_user.admin? %>              
-              <td><%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %></td>
-            <% else %>
-              <td><%= button_to 'Show', car_path(car), method: :get, class: "custom-button btn btn-dark" %></td>
-              <td><%= link_to 'Back', root_path, class: "btn btn-outline-dark" %></td>
-            <% end %>
+            <td><%= button_to 'Détail', car_path(car), method: :get, class: "custom-button btn btn-dark" %></td>
           </tr>
         <% end %>
       </tbody>

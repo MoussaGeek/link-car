@@ -1,5 +1,5 @@
 td {
-    padding: 10px; /* Ajustez la valeur selon votre préférence */
+    padding: 10px;
   }
   
 .btn-gray {
@@ -38,22 +38,47 @@ td {
 
 .text-center {
   .total-chauffeurs-box {
-    background-color: gray; /* Couleur de fond grise */
+    background-color: gray;
     display: inline-block;
-    padding: 5px 10px; /* Espacement autour du carré de fond gris */
-    border-radius: 5px; /* Coins arrondis */
+    padding: 5px 10px;
+    border-radius: 5px;
   }
 
   .total-chauffeurs {
-    margin-left: 10px; /* Espacement entre "Liste des voitures" et le nombre total */
-    font-size: 16px; /* Taille de police du nombre total */
+    margin-left: 10px;
+    font-size: 16px;
   }
 }
 
 .total-chauffeurs-blue {
-  background-color: blue; /* Couleur de fond bleu */
-  color: white; /* Couleur du texte en blanc pour contraster */
-  padding: 5px 10px; /* Espacement autour du carré de fond bleu */
-  border-radius: 5px; /* Coins arrondis */
-  display: inline-block; /* Pour que le carré s'adapte à son contenu */
+  background-color: blue; 
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block; 
+}
+
+.reservation-status-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.en-reservation {
+  background-color: red;
+}
+
+.hors-reservation {
+  background-color: green;
+}
+
+.card-bodych {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservation-status-container {
+  margin-left: auto;
 }

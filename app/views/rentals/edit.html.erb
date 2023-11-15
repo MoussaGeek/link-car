@@ -11,7 +11,7 @@
   </div>
   <div class="d-flex justify-content-around row" style="margin-bottom: 20px;">
     <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-      <h2 style="text-align: center; padding: 20px">Edit rental</h2>
+      <h2 style="text-align: center; padding: 20px">Modification d'une réservation</h2>
       <%= form_for( @rental, url: rental_path(@rental), local: true, method: :patch) do |f| %>
         <div class="notice">
             <% if flash[:notice] %>
@@ -67,7 +67,7 @@
         <div class="form-group">
           <span class="d-flex justify-content-around">
             <%= f.submit "Modifier", class: "btn btn-primary" %>
-            <%= link_to 'Back', rentals_path, class: 'btn btn-secondary' %>
+            <%= link_to 'Retour', rentals_path, class: 'btn btn-secondary' %>
           </span>
         </div>
       <% end %>

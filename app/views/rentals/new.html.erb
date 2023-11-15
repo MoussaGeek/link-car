@@ -14,14 +14,16 @@
             <h2 style="text-align: center; padding: 20px">Réserver une voiture</h2>
             <%= form_with(model: @rental) do |form| %>
                 <% if @rental.errors.any? %>
-                    <div id="error_explanation">
-                        <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
-                        <ul>
-                            <% @rental.errors.each do |error| %>
-                                <li><%= error.full_message %></li>
-                            <% end %>
-                        </ul>
+                  <div id="error_explanation">
+                    <div class="alert alert-danger">
+                      The form contains <%= pluralize(@rental.errors.count, "error") %>.
                     </div>
+                    <ul>
+                      <% @rental.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
                 <% end %>
 
                 <% if @rental.car_id.blank? %>
@@ -73,7 +75,7 @@
 
                 <div class="d-flex justify-content-around" style="margin-bottom: 20px;">
                     <div class="actions">
-                        <%= form.submit "Réserver", class: "btn btn-primary" %>
+                        <%= form.submit "Réserve", class: "btn btn-primary" %>
                     </div>
                     <div><%= link_to 'Annuler', cars_path, class:"btn btn-outline-dark" %></div>
                 </div>
