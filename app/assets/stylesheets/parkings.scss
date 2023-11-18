@@ -2,48 +2,48 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 #map{
-    width: 700px;
-    height: 400px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
+  width: 700px;
+  height: 400px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
 
 .btn-gray {
-  background-color: gray;
-  color: white;
+background-color: gray;
+color: white;
 }
 .btn-gray:hover {
-    background-color: darkgray;
+  background-color: darkgray;
 }
 
 .custom-button.btn-dark {
-  background-color: #007bff;
-  border-color: #007bff; 
+background-color: #007bff;
+border-color: #007bff; 
 }
 
 .custom-button.btn-dark:hover {
-  background-color: #b8d8ff; 
-  border-color: #b8d8ff; 
+background-color: #b8d8ff; 
+border-color: #b8d8ff; 
 }
 
 .custom-button {
-  background-color: #cd727b;
-  border-color: #6b353a; 
-  color: #fff; 
-  transition: background-color 0.3s, border-color 0.3s;
+background-color: #cd727b;
+border-color: #6b353a; 
+color: #fff; 
+transition: background-color 0.3s, border-color 0.3s;
 
-  &:hover {
-    background-color: #ff0000;
-    border-color: #ff0000;
-  }
+&:hover {
+  background-color: #ff0000;
+  border-color: #ff0000;
+}
 }
 
 .car-count-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+position: absolute;
+top: 10px; /* Ajustez la valeur en fonction de votre mise en page */
+right: 10px; /* Ajustez la valeur en fonction de votre mise en page */
+background-color: #fff; /* Couleur de fond de l'élément */
+padding: 5px; /* Espace interne pour le badge */
+border: 1px solid #ddd; /* Bordure pour le badge */
+border-radius: 5px; /* Coins arrondis pour le badge */
 }

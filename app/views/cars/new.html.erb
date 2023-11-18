@@ -10,11 +10,11 @@
   <% end %>
   </div>
   <div style="text-align: center; padding-top: 40px;"><h1>Création d'une voiture</h1></div>
-  <%= form_with(model: @car) do |form| %>
+  <%= form_for(@car) do |f| %>
     <% if @car.errors.any? %>
       <div id="error_explanation">
         <div class="alert alert-danger">
-          The form contains <%= pluralize(@car.errors.count, "error") %>.
+            The form contains <%= pluralize(@car.errors.count, "error") %>.
         </div>
         <ul>
           <% @car.errors.full_messages.each do |message| %>
@@ -27,55 +27,55 @@
       <div class="row">
         <div class="col-md-6">
           <div class="field">
-            <%= form.label :numero_matricule %>
-            <%= form.text_field :numero_matricule, class: "form-control" %>
+            <%= f.label :numero_matricule %>
+            <%= f.text_field :numero_matricule, class: "form-control" %>
           </div>
 
           <div class="field">
-            <%= form.label :marque %>
-            <%= form.text_field :marque, class: "form-control" %>
+            <%= f.label :marque %>
+            <%= f.text_field :marque, class: "form-control" %>
           </div>
 
           <div class="field">
-            <%= form.label :price_rental %>
-            <%= form.number_field :price_rental, class: "form-control" %>
+            <%= f.label :price_rental %>
+            <%= f.number_field :price_rental, class: "form-control" %>
           </div>
 
           <div class="field">
-            <%= form.label :modele %>
-            <%= form.text_field :modele, class: "form-control" %>
+            <%= f.label :modele %>
+            <%= f.text_field :modele, class: "form-control" %>
           </div>
 
           <div class="field">
-            <%= form.label :annee %>
-            <%= form.number_field :annee, class: "form-control" %>
+            <%= f.label :annee %>
+            <%= f.number_field :annee, class: "form-control" %>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="card-body">
             <div class="field">
-              <%= form.label :carburant %>
-              <%= form.text_field :carburant, class: "form-control" %>
+              <%= f.label :carburant %>
+              <%= f.text_field :carburant, class: "form-control" %>
             </div>
 
             <div class="field">
-              <%= form.label :car_type %>
-              <%= form.text_field :car_type, class: "form-control" %>
+              <%= f.label :car_type %>
+              <%= f.text_field :car_type, class: "form-control" %>
             </div>
 
             <div class="field">
-              <%= form.label :photo %>
-              <%= form.file_field :photo, class: "form-control-file" %>
+              <%= f.label :photo %>
+              <%= f.file_field :photo, class: "form-control-file" %>
             </div>
 
             <div class="field">
-              <%= form.label :parking_id %>
-              <%= form.collection_select :parking_id, Parking.all, :id, :name, { prompt: "Sélectionnez le parking" }, { class: "form-control" } %>
+              <%= f.label :parking_id %>
+              <%= f.collection_select :parking_id, Parking.all, :id, :name, { prompt: "Sélectionnez le parking" }, { class: "form-control" } %>
             </div>
 
             <div class="actions" style="text-align: center;">
-              <%= form.submit "Créer", class: "btn btn-primary", style: "padding: 10px 20px;" %>
+              <%= f.submit "Créer", class: "btn btn-primary", style: "padding: 10px 20px;" %>
             </div>
           </div>
         </div>

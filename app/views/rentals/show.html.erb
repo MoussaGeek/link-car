@@ -15,11 +15,11 @@
          <div class="border border-dark rounded bg-light" style="margin-bottom: 20px;">
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Date:</strong> <%= @rental.format_date %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Time:</strong> <%= @rental.format_time %></p>
-            <p style="text-align: center; padding: 10px; font-size: 20px" class="price-rental"><strong>Prix de Location:</strong> <%= number_to_currency(@rental.car.price_rental, unit: ' F CFA ') %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px" class="price-rental"><strong>Prix de location:</strong> <%= number_to_currency(@rental.car.price_rental, unit: ' F CFA ') %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Nombre de jour:</strong> <%= pluralize(@rental.duration, "jour", plural: "jours") %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Destination:</strong> <%= @rental.destination %></p>
-            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Name client:</strong> <%= @rental.user.name %></p> 
-            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Car_Rental numero_matricule:</strong> <%= @rental.car.numero_matricule %></p>
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Nom du client:</strong> <%= @rental.user.name %></p> 
+            <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Matricule du voiture:</strong> <%= @rental.car.numero_matricule %></p>
             <p style="text-align: center; padding: 10px; font-size: 20px"><strong>Chauffeur:</strong>
             <% if @rental.chauffeur.present? %>
               <%= @rental.chauffeur.name %>

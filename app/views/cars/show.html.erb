@@ -39,7 +39,7 @@
             <% else %> 
               <%= button_to 'Retour', cars_path(@car), method: :get, class:"btn btn-outline-dark" %>  
               <% if @car.disponible? %>
-                <%= link_to "Réserver", new_rental_path(car_id: @car.id, user_id: current_user.id), class:"btn btn-outline-dark" %>
+                <%= link_to "Réserver", new_rental_path(car_id: @car.id, user_id: current_user.id), class:"btn btn-outline-resv" %>
               <% else %>
                 <p style="color: red;">Déjà réservée.</p>
               <% end %>

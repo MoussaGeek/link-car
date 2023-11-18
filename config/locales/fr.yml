@@ -104,6 +104,10 @@ fr:
               blank: n'a pas été attaché.
         rental:
           attributes:
+            date:
+              blank: n'a pas été saisi.
+            time:
+              blank: n'a pas été saisi.
             duration:
               blank: n'a pas été saisi.
             destination:

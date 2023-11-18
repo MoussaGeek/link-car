@@ -1,85 +1,80 @@
 <div id="container_p">
-    <div class="notice">
-        <% if flash[:notice] %>
-            <div class="alert alert-success alert-dismissible show fade">
-                <%= flash[:notice] %>
-                <button type="button" class="close" data-dismiss="alert">
-                    <span>&times;</span>
-                </button>
-            </div>
+  <div class="notice">
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible show fade">
+        <%= flash[:notice] %>
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+      </div>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-around row">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <h2 style="text-align: center; padding: 20px">Réserver une voiture</h2>
+      <%= form_for(@rental) do |f| %>
+        <% if @rental.errors.any? %>
+          <h2><%= @rental.errors.count %> erreurs s'est produite</h2>
+            <ul>
+              <% @rental.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
         <% end %>
-    </div>
-    <div class="d-flex justify-content-around row">
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-            <h2 style="text-align: center; padding: 20px">Réserver une voiture</h2>
-            <%= form_with(model: @rental) do |form| %>
-                <% if @rental.errors.any? %>
-                  <div id="error_explanation">
-                    <div class="alert alert-danger">
-                      The form contains <%= pluralize(@rental.errors.count, "error") %>.
-                    </div>
-                    <ul>
-                      <% @rental.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                <% end %>
+        <% if @rental.car_id.blank? %>
+          <% car_id = params[:car_id] %>
+        <% else %>
+          <% car_id = @rental.car_id %>
+        <% end %>
 
-                <% if @rental.car_id.blank? %>
-                    <% car_id = params[:car_id] %>
-                <% else %>
-                    <% car_id = @rental.car_id %>
-                <% end %>
-
-                <div class="field form-group">
-                    <%= form.label :date, class: "form-control" %>
-                    <%= form.date_select :date, class: "form-control" %>
-                </div>
-
-                <div class="field form-group">
-                    <%= form.label :time, class: "form-control" %>
-                    <%= form.time_select :time, class: "form-control" %>
-                </div>
-
-                <div class="field form-group">
-                    <%= form.label :duration, class: "form-control" %>
-                    <%= form.number_field :duration, class: "form-control" %>
-                </div>
-
-                <div class="field form-group">
-                    <%= form.label :destination, class: "form-control" %>
-                    <%= form.text_field :destination, class: "form-control" %>
-                </div>
-
-                <div class="field form-group">
-                    <label for="showHideChauffeur">Voulez-vous un chauffeur !</label>
-                    <%= form.check_box :hide_chauffeur, id: "showHideChauffeur" %>
-                </div>
-
-                <!-- Champ de sélection du chauffeur initialement caché -->
-                <div class="field form-group" id="chauffeurSelect" style="display: none;">
-                    <%= form.label :chauffeur_id, "Chauffeur", class: "form-control" %>
-                    <%= form.collection_select :chauffeur_id, Chauffeur.all, :id, :name, { prompt: "Sélectionnez le chauffeur" }, { allow_blank: true, class: "form-control" } %>
-                </div>
-
-                <div class="field form-group" style="display: none;">
-                    <%= form.label :car_matricule, class: "form-control" %>
-                    <%= form.text_field :car_id, value: car_id, readonly: true, class: "form-control" %>
-                </div>
-
-                <div class="field form-group" style="display: none;">
-                    <%= form.label :user_name, class: "form-control" %>
-                    <%= form.text_field :user_id, value: current_user.id, readonly: true, class: "form-control" %>
-                </div>
-
-                <div class="d-flex justify-content-around" style="margin-bottom: 20px;">
-                    <div class="actions">
-                        <%= form.submit "Réserve", class: "btn btn-primary" %>
-                    </div>
-                    <div><%= link_to 'Annuler', cars_path, class:"btn btn-outline-dark" %></div>
-                </div>
-            <% end %>
+        <div class="field form-group">
+          <%= f.label :date, class: "form-control" %>
+          <%= f.date_select :date, class: "form-control" %>
         </div>
+
+        <div class="field form-group">
+          <%= f.label :time, class: "form-control" %>
+          <%= f.time_select :time, class: "form-control" %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :duration, class: "form-control" %>
+          <%= f.number_field :duration, class: "form-control" %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :destination, class: "form-control" %>
+          <%= f.text_field :destination, class: "form-control" %>
+        </div>
+
+        <div class="field form-group">
+          <label for="showHideChauffeur">Voulez-vous un chauffeur !</label>
+          <%= f.check_box :chauffeur_id, id: "showHideChauffeur" %>
+        </div>
+
+        <!-- Champ de sélection du chauffeur initialement caché -->
+        <div class="field form-group" id="chauffeurSelect" style="display: none;">
+          <%= f.label :chauffeur_id, "Chauffeur", class: "form-control" %>
+          <%= f.collection_select :chauffeur_id, Chauffeur.all, :id, :name, { prompt: "Sélectionnez le chauffeur" }, { allow_blank: true, class: "form-control" } %>
+        </div>
+
+        <div class="field form-group" style="display: none;">
+          <%= f.label :car_matricule, class: "form-control" %>
+          <%= f.text_field :car_id, value: car_id, readonly: true, class: "form-control" %>
+        </div>
+
+        <div class="field form-group" style="display: none;">
+          <%= f.label :user_name, class: "form-control" %>
+          <%= f.text_field :user_id, value: current_user.id, readonly: true, class: "form-control" %>
+        </div>
+
+        <div class="d-flex justify-content-around" style="margin-bottom: 20px;">
+          <div class="actions">
+            <%= f.submit "Réserve", class: "btn btn-primary" %>
+          </div>
+          <div><%= link_to 'Annuler', cars_path, class:"btn btn-outline-dark" %></div>
+        </div>
+      <% end %>
     </div>
+  </div>
 </div>

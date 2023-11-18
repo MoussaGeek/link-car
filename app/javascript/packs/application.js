@@ -20,6 +20,19 @@ document.addEventListener("turbolinks:load", function() {
     totalCarsAvailableElement.addEventListener("click", () => redirectTo(totalCarsAvailableElement));
   }
 
+  var showHideChauffeurCheckbox = document.getElementById('showHideChauffeur');
+  var chauffeurSelect = document.getElementById('chauffeurSelect');
+
+  function toggleChauffeurSelect() {
+    chauffeurSelect.style.display = showHideChauffeurCheckbox.checked ? 'block' : 'none';
+  }
+
+  toggleChauffeurSelect();
+
+  showHideChauffeurCheckbox.addEventListener('change', toggleChauffeurSelect);
+});
+
+function initMap() {
   const latitudeElement = document.getElementById('latitude');
   const longitudeElement = document.getElementById('longitude');
 
@@ -39,16 +52,6 @@ document.addEventListener("turbolinks:load", function() {
       title: "Lieu du parking",
     });
   }
+}
 
-  var showHideChauffeurCheckbox = document.getElementById('showHideChauffeur');
-  var chauffeurSelect = document.getElementById('chauffeurSelect');
-
-  function toggleChauffeurSelect() {
-    chauffeurSelect.style.display = showHideChauffeurCheckbox.checked ? 'block' : 'none';
-  }
-
-  // Initialisation de l'état de la checkbox
-  toggleChauffeurSelect();
-
-  showHideChauffeurCheckbox.addEventListener('change', toggleChauffeurSelect);
-});
+window.initMap = initMap;

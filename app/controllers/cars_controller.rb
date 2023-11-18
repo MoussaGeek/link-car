@@ -7,28 +7,28 @@ class CarsController < ApplicationController
     @cars = Car.all
     @total_cars = @cars.count
     @total_cars_available = @cars.where(disponible: true).count
-  
+
     if params[:numero_matricule].present?
       @cars = @cars.where("numero_matricule ILIKE ?", "%#{params[:numero_matricule]}%")
     end
-  
+
     if params[:parking].present?
       @cars = @cars.where(parking_id: params[:parking])
     end
-  
+
     if params[:modele].present?
       @cars = @cars.where("modele ILIKE ?", "%#{params[:modele]}%")
     end
-  
+
     if params[:car_type].present?
       @cars = @cars.where("car_type ILIKE ?", "%#{params[:car_type]}%")
     end
-  
+
     if params[:disponibilite] == 'disponible'
       @cars = @cars.where(disponible: true)
       @total_cars_available = @cars.count
     end
-  
+
     @cars = @cars.page(params[:page])
   end
 
@@ -41,26 +41,26 @@ class CarsController < ApplicationController
 
   def edit
   end
-  
+
   def create
     @car = Car.new(car_params)
     if @car.save
-      flash[:notice] = 'La voiture a été créé avec succès.'
+      flash[:notice] = 'La voiture a été créée avec succès.'
       redirect_to @car
     else
-      @error_message = @car.errors.full_messages.join(', ')
+      flash[:alert] = @car.errors[:numero_matricule].join(', ')
       render :new
     end
   end
 
   def update
     @car = Car.find(params[:id])
-  
+
     if car_params[:numero_matricule] != @car.numero_matricule
       @car.rentals.destroy_all
       @car.update(disponible: true)
     end
-  
+
     if @car.update(car_params)
       flash[:notice] = 'La voiture a été modifiée avec succès.'
       redirect_to @car
@@ -71,7 +71,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car.destroy
-    flash[:notice] = 'La voiture a été supprimer avec succès.'
+    flash[:notice] = 'La voiture a été supprimée avec succès.'
     redirect_to cars_url
   end
 

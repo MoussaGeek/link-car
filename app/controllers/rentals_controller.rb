@@ -16,43 +16,30 @@ class RentalsController < ApplicationController
   def show
   end
 
-  def new
-    @rental = Rental.new
-  end
-
   def edit
     @rental = Rental.find(params[:id])
     @car = @rental.car
     @user = current_user
   end
 
+  def new
+    @rental = Rental.new
+  end
+
   def create
-    car_id = rental_params[:car_id]
-    user_id = rental_params[:user_id]
     @rental = Rental.new(rental_params)
     @car = @rental.car
-
-    reservation_datetime = @rental.date.to_datetime + @rental.time.seconds_since_midnight.seconds
-
-    if reservation_datetime >= Time.current
+  
+    # Si toutes les validations passent, mettez à jour la disponibilité du car et enregistrez la réservation
+    if @rental.save
       @car.update(disponible: false)
-
-      if chauffeur_selected_for_active_reservation?
-        flash[:alert] = 'Le chauffeur sélectionné est déjà réservé pour une réservation en cours.'
-        @car.update(disponible: true)
-        render :new
-      elsif @rental.save
-        @selected_chauffeur = Chauffeur.find_by(id: params[:rental][:chauffeur_id])
-        flash[:notice] = 'La réservation a été faite avec succès.'
-        redirect_to @rental
-      else
-        @error_message = @rental.errors.full_messages.join(', ')
-        @car.update(disponible: true)
-        render :new
-      end
+      @selected_chauffeur = Chauffeur.find_by(id: params[:rental][:chauffeur_id])
+      flash[:notice] = 'La réservation a été faite avec succès.'
+      redirect_to @rental
     else
-      flash[:alert] = "La date et l'heure de location ne peuvent pas être antérieures à la date et l'heure actuelles."
-      render :new
+      flash[:alert] = "Erreur lors de la création de la réservation. Veuillez vérifier les champs du formulaire."
+      @error_message = @rental.errors.full_messages.join(', ')
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -60,7 +47,7 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id]) 
     respond_to do |format|
       if @rental.update(rental_params)
-        format.html { redirect_to rental_url(@rental), notice: "La réservation a été modifier avec succès." }
+        format.html { redirect_to rental_url(@rental), notice: "La réservation a été modifiée avec succès." }
         format.json { render :show, status: :ok, location: @rental }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -75,7 +62,7 @@ class RentalsController < ApplicationController
     @car.update(disponible: true)
 
     respond_to do |format|
-      format.html { redirect_to rentals_url, notice: "La réservation a été supprimer avec succès." }
+      format.html { redirect_to rentals_url, notice: "La réservation a été supprimée avec succès." }
       format.json { head :no_content }
     end
   end
@@ -97,7 +84,7 @@ class RentalsController < ApplicationController
     end
 
     def expire_reservations
-      @rentals.each do |rental|
+      Rental.active.each do |rental|
         if rental.expired?
           car = rental.car
           car.update(disponible: true)
@@ -114,5 +101,4 @@ class RentalsController < ApplicationController
       active_reservation = Rental.where(chauffeur_id: chauffeur_id).active.first
       active_reservation.present?
     end
-  
 end

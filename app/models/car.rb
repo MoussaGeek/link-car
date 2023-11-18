@@ -15,7 +15,7 @@ class Car < ApplicationRecord
   validates :price_rental, presence: true
   validates :modele, presence: true
   validates :annee, presence: true
-  validates :carburant, presence: true
+  validates :numero_matricule, presence: true, uniqueness: { message: "Ce numéro matricule est déjà pris. Veuillez en choisir un autre." }
   validates :car_type, presence: true
   validates :numero_matricule, presence: true
 end

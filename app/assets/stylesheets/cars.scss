@@ -17,7 +17,7 @@
 
 .custom-button.btn-dark:hover {
   background-color: #b8d8ff; 
-  border-color: #b8d8ff; 
+  border-color: #02130d; 
 }
 
 .custom-button {
@@ -30,6 +30,11 @@
     background-color: #ff0000;
     border-color: #ff0000;
   }
+}
+
+.btn-outline-resv:hover {
+  background-color: #28a745;
+  color: #080202;
 }
 
 .text-center {
