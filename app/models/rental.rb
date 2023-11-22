@@ -12,7 +12,7 @@ class Rental < ApplicationRecord
 
   validate :chauffeur_not_currently_reserved
 
-  scope :active, -> { where("date + time + duration * interval '1 day' > ?", Time.zone.now) }
+  scope :active, -> { where("date + time + duration * interval '1 day' > ?", Time.current) }
 
   def format_date
     date.strftime("%m/%d/%Y")
